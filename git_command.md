@@ -4,7 +4,7 @@
 
 [alias]
 ll = !git pull
-p = !git push
+sh = !git push
 ch = !git checkout
 re = !git reset --hard
 t = git tag
