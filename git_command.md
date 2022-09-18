@@ -16,7 +16,7 @@ ll = !git pull
 <br />
 sh = !git push
 <br />
-ch = !git checkout && !git pull
+ch = !git checkout
 <br />
 re = !git reset --hard
 <br />
