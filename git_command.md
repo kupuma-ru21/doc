@@ -23,3 +23,5 @@ re = !git reset --hard
 t = !git tag
 <br />
 c = !git add --all && git commit -m
+<br />
+rc = !git reset --soft HEAD^
