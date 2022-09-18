@@ -14,9 +14,9 @@
 <br />
 ll = !git pull
 <br />
-sh = !git push
+sh = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
 <br />
-ch = !git fetch && !git checkout
+ch = !git checkout
 <br />
 re = !git reset --hard
 <br />
