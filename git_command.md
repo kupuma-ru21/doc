@@ -1,6 +1,6 @@
 #### rename git to g
 
-- code ~/.bash_profile
+- code ~/.bash_profile or code ~/.zlogin
 - input a and enter for edit
 - write 「alias g='git'」
 
