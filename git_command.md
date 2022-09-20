@@ -16,7 +16,7 @@ ll = !git pull
 <br />
 sh = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
 <br />
-ch = !sh -c 'git add --all && git commit -m "chore" && git checkout $1 $2 && git pull' -
+ch = !sh -c 'git checkout $1 $2 && git pull' -
 <br />
 re = !git reset --hard
 <br />
