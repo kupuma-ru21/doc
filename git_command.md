@@ -21,7 +21,7 @@ re = !git reset --hard
 <br />
 t = !git tag
 <br />
-c = !git add --all && git commit -m
+c = !sh -c 'git add --all && git commit -m "$1"' -
 <br />
 rc = !git reset --soft HEAD^
 <br />
