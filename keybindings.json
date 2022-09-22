@@ -1,3 +1,4 @@
+// vscode上で、「shortcuts json」
 // 既定値を上書きするには、このファイル内にキー バインドを挿入しますauto[]
 [
   // move to issue
@@ -7,6 +8,18 @@
   { "key": "shift+alt+2", "command": "workbench.action.splitEditorRight",
     "when": "editorTextFocus"
   },
+
+  // move editor left
+  {
+    "key": "shift+1", "command": "workbench.action.moveEditorToFirstGroup",
+    "when": "editorTextFocus"
+  },
+  // move editor right
+  {
+    "key": "shift+2", "command": "workbench.action.moveEditorToLastGroup",
+    "when": "editorTextFocus"
+  },
+
   // split terminal right
   { "key": "shift+alt+2", "command": "workbench.action.terminal.split",
     "when": "terminalFocus"
