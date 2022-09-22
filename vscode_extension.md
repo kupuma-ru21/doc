@@ -9,6 +9,7 @@
 - https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag
 - https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces
 - https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
+- https://marketplace.visualstudio.com/items?itemName=ryuta46.multi-command
 
 #### optional
 - https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
