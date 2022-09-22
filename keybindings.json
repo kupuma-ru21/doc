@@ -23,7 +23,7 @@
       "command": "workbench.action.splitEditorLeft"
     },
     {
-      "key": "shift+alt+right",
+      "key": "shift+alt+1",
       "command": "workbench.action.splitEditorRight"
     }
   ]
