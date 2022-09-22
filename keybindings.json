@@ -1,29 +1,35 @@
-// vscode上で、「shortcuts json」
 // 既定値を上書きするには、このファイル内にキー バインドを挿入しますauto[]
 [
-    // ターミナル エディタ 間 移動
-    { "key": "alt+2", "command": "workbench.action.terminal.focus" },
-    {
-      "key": "alt+2",
-      "command": "workbench.action.focusActiveEditorGroup",
-      "when": "terminalFocus"
-    },
-    // 問題 view エディタ 間 移動
-    {
-      "key": "alt+1",
-      "command": "workbench.panel.markers.view.focus"
-    },
-    // エディタ分割
-    {
-      "key": "alt+tab right",
-      "command": "workbench.action.splitEditor"
-    },
-    {
-      "key": "alt+tab left",
-      "command": "workbench.action.splitEditorLeft"
-    },
-    {
-      "key": "shift+alt+1",
-      "command": "workbench.action.splitEditorRight"
-    }
-  ]
+  // move to issue
+  { "key": "alt+1", "command": "workbench.panel.markers.view.focus" },
+
+  // split editor right
+  { "key": "shift+alt+2", "command": "workbench.action.splitEditorRight",
+    "when": "editorTextFocus"
+  },
+  // split terminal right
+  { "key": "shift+alt+2", "command": "workbench.action.terminal.split",
+    "when": "terminalFocus"
+  },
+
+  // move to terminal from editor
+  { "key": "alt+2", "command": "workbench.action.terminal.focus" },
+  // move to editor from terminal
+  {
+    "key": "escape", "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+
+  // move between terminal
+  { "key": "cmd+1", "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus"
+  },
+  { "key": "cmd+2", "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus"
+  },
+
+  // terminate terminal
+  { "key": "cmd+W", "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
+]
