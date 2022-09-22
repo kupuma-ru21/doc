@@ -26,3 +26,5 @@ c = !git add --all && git commit -m
 rc = !git reset --soft HEAD^
 <br />
 rs = !git stash pop
+<br />
+st = !git stash
