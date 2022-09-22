@@ -28,3 +28,5 @@ rc = !git reset --soft HEAD^
 rs = !git stash pop
 <br />
 st = !git stash
+<br />
+m = !git merge
