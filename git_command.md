@@ -1,7 +1,12 @@
-#### rename git to g
+#### custom bash or zash
 
 - `code ~/.bash_profile` or `code ~/.zlogin`
-- write `alias g='git'`
+
+write below
+<br />
+alias g='git'
+<br />
+alias c='clear'
 
 ---
 
