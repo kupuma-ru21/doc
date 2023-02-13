@@ -13,6 +13,7 @@ alias c='clear'
 #### git alias
 
 - git config --global --edit
+- git config --global core.editor code
 
 [alias]
 <br />
