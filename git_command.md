@@ -37,3 +37,7 @@ rs = !git stash pop
 st = !git stash
 <br />
 m = !git merge
+<br />
+cb = !git checkout -b
+<br />
+db = !git branch -d
