@@ -41,3 +41,5 @@ m = !git merge
 cb = !git checkout -b
 <br />
 db = !git branch -d
+<br />
+lr = !git checkout .
