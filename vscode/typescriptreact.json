@@ -1,0 +1,22 @@
+// https://zenn.dev/miz_dev/articles/157a7aaad0bdcf
+{
+  "Print to console": {
+    "prefix": "lo",
+    "body": ["console.log('$1');"],
+    "description": "Log output to console"
+  },
+  "Print to performance": {
+    "prefix": "log_c",
+    "body": [
+      "const startTime = performance.now();",
+      "const endTime = performance.now();",
+      "console.log(endTime - startTime);"
+    ],
+    "description": "Log output to console"
+  },
+  "Print to debugger": {
+    "prefix": "de",
+    "body": ["debugger;"],
+    "description": "Log output to console"
+  }
+}
