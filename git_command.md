@@ -14,7 +14,7 @@ alias c='clear'
 
 - git config --global --edit
 - git config --global core.editor code
-- git config -e
+- git config --global -e
 
 [alias]
 <br />
