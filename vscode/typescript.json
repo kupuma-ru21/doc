@@ -12,11 +12,16 @@
       "const endTime = performance.now();",
       "console.log(endTime - startTime);"
     ],
-    "description": "Log output to console"
+    "description": "Print to performance"
   },
   "Print to debugger": {
     "prefix": "de",
     "body": ["debugger;"],
-    "description": "Log output to console"
+    "description": "Print to debugger"
+  },
+  "Print to mock array": {
+    "prefix": "mockArray",
+    "body": ["[...Array(10$1)].map((_, index) => {});"],
+    "description": "Print to mock array"
   }
 }
