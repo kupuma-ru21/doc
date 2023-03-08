@@ -6,12 +6,8 @@
     "description": "Log output to console"
   },
   "Print to performance": {
-    "prefix": "log_c",
-    "body": [
-      "const startTime = performance.now();",
-      "const endTime = performance.now();",
-      "console.log(endTime - startTime);"
-    ],
+    "prefix": "log_t",
+    "body": ["console.time('$1timeLog');", "console.timeEnd('timeLog');"],
     "description": "Print to performance"
   },
   "Print to debugger": {
