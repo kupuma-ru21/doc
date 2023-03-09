@@ -19,5 +19,10 @@
     "prefix": "mockArray",
     "body": ["[...Array(10$1)].map((_, index) => {});"],
     "description": "Print to mock array"
+  },
+  "Print to const": {
+    "prefix": "co",
+    "body": ["const"],
+    "description": "Log output to const"
   }
 }
