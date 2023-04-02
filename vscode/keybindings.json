@@ -1,48 +1,67 @@
 // vscode上で、「shortcuts json」
 // 既定値を上書きするには、このファイル内にキー バインドを挿入しますauto[]
 [
-  // move to issue
+  // move to problems
   { "key": "alt+1", "command": "workbench.panel.markers.view.focus" },
-
+  // move to editor from problems
+  {
+    "key": "escape",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "problemFocus"
+  },
+  // move to editor from terminal
+  {
+    "key": "right",
+    "command": "problems.action.showQuickFixes",
+    "when": "problemFocus"
+  },
   // split editor right
-  { "key": "shift+alt+2", "command": "workbench.action.splitEditorRight",
+  {
+    "key": "shift+alt+2",
+    "command": "workbench.action.splitEditorRight",
     "when": "editorTextFocus"
   },
-
   // move editor left
   {
-    "key": "shift+ctrl+1", "command": "workbench.action.moveEditorToFirstGroup",
+    "key": "shift+ctrl+1",
+    "command": "workbench.action.moveEditorToFirstGroup",
     "when": "editorTextFocus"
   },
   // move editor right
   {
-    "key": "shift+ctrl+2", "command": "workbench.action.moveEditorToLastGroup",
+    "key": "shift+ctrl+2",
+    "command": "workbench.action.moveEditorToLastGroup",
     "when": "editorTextFocus"
   },
-
   // split terminal right
-  { "key": "shift+alt+2", "command": "workbench.action.terminal.split",
+  {
+    "key": "shift+alt+2",
+    "command": "workbench.action.terminal.split",
     "when": "terminalFocus"
   },
-
   // move to terminal from editor
   { "key": "alt+2", "command": "workbench.action.terminal.focus" },
   // move to editor from terminal
   {
-    "key": "escape", "command": "workbench.action.focusActiveEditorGroup",
+    "key": "escape",
+    "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
   },
-
   // move between terminal
-  { "key": "cmd+1", "command": "workbench.action.terminal.focusPreviousPane",
+  {
+    "key": "cmd+1",
+    "command": "workbench.action.terminal.focusPreviousPane",
     "when": "terminalFocus"
   },
-  { "key": "cmd+2", "command": "workbench.action.terminal.focusNextPane",
+  {
+    "key": "cmd+2",
+    "command": "workbench.action.terminal.focusNextPane",
     "when": "terminalFocus"
   },
-
   // terminate terminal
-  { "key": "cmd+W", "command": "workbench.action.terminal.kill",
+  {
+    "key": "cmd+W",
+    "command": "workbench.action.terminal.kill",
     "when": "terminalFocus"
-  },
+  }
 ]
