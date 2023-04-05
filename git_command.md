@@ -43,3 +43,5 @@ cb = !git checkout -b
 db = !git branch -d
 <br />
 lr = !git checkout .
+<br />
+a = !git add --all
