@@ -40,7 +40,7 @@ m = !git merge
 <br />
 cb = !git checkout -b
 <br />
-db = !git branch -d
+db = !git push origin --delete
 <br />
 lr = !git checkout .
 <br />
