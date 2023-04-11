@@ -17,12 +17,22 @@
   },
   "Print to mock array": {
     "prefix": "mockArray",
-    "body": ["[...Array(10$1)].map((_, index) => {});"],
+    "body": ["[...Array(10)].map((_, index) => {$1});"],
     "description": "Print to mock array"
   },
   "Print to const": {
     "prefix": "co",
     "body": ["const"],
+    "description": "Log output to const"
+  },
+  "Print to ComponentProps": {
+    "prefix": "CP",
+    "body": ["type Sample = ComponentProps<typeof $1>"],
+    "description": "Log output to const"
+  },
+  "Print to arrow function": {
+    "prefix": "arrowF",
+    "body": ["const sample = () => {$1};"],
     "description": "Log output to const"
   }
 }
