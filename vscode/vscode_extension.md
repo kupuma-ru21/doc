@@ -1,4 +1,5 @@
 #### required
+<!-- FrontEnd -->
 - https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-ja
 - https://marketplace.visualstudio.com/items?itemName=tomphilbin.gruvbox-themes
 - https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag
@@ -10,6 +11,10 @@
 - https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces
 - https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
 - https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv
+
+<!-- BackEnd -->
+- https://marketplace.visualstudio.com/items?itemName=golang.go
+  - https://stackoverflow.com/questions/71101439/how-can-i-configure-the-staticcheck-linter-in-visual-studio-code
 
 #### optional
 - https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
