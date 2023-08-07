@@ -1,0 +1,7 @@
+{
+	"[go]": {
+		"editor.defaultFormatter": "golang.go",
+		"editor.formatOnSave": true
+	},
+	"gopls": { "ui.diagnostic.staticcheck": true }
+}
