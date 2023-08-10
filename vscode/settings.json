@@ -3,5 +3,7 @@
 		"editor.defaultFormatter": "golang.go",
 		"editor.formatOnSave": true
 	},
-	"gopls": { "ui.diagnostic.staticcheck": true }
+	"gopls": { "ui.diagnostic.staticcheck": true },
+	"editor.guides.bracketPairs": true,
+  	"editor.bracketPairColorization.enabled": true
 }
