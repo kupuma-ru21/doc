@@ -11,6 +11,7 @@
 - https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces
 - https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
 - https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv
+- https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost
 
 <!-- BackEnd -->
 - https://marketplace.visualstudio.com/items?itemName=golang.go
