@@ -1,5 +1,6 @@
-#### required
-<!-- FrontEnd -->
+# required
+
+## FrontEnd
 - https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-ja
 - https://marketplace.visualstudio.com/items?itemName=tomphilbin.gruvbox-themes
 - https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag
@@ -13,7 +14,7 @@
 - https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv
 - https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost
 
-<!-- BackEnd -->
+## BackEnd
 - https://marketplace.visualstudio.com/items?itemName=golang.go
   - https://stackoverflow.com/questions/71101439/how-can-i-configure-the-staticcheck-linter-in-visual-studio-code
 
