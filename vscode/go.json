@@ -1,0 +1,9 @@
+{
+	"Handling error": {
+		"prefix": "eh",
+		"body": [
+			"err != nil { return nil, err }"
+		],
+		"description": "Output error handling"
+	}
+}
