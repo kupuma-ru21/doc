@@ -63,5 +63,11 @@
     "key": "cmd+W",
     "command": "workbench.action.terminal.kill",
     "when": "terminalFocus"
+  },
+  // clear terminal history
+  {
+    "key": "cmd+L",
+    "command": "workbench.action.terminal.clear",
+    "when": "terminalFocus"
   }
 ]

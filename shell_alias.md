@@ -7,4 +7,4 @@ alias g='git'
 <br />
 alias c='clear'
 <br />
-alias ec='code .'
+alias e='code .'
