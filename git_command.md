@@ -1,15 +1,3 @@
-#### custom bash or zash
-
-- `code ~/.bash_profile` or `code ~/.zlogin`
-
-write below
-<br />
-alias g='git'
-<br />
-alias c='clear'
-
----
-
 #### git alias
 
 - git config --global --edit
