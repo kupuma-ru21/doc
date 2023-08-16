@@ -28,7 +28,7 @@ m = !git merge
 <br />
 cb = !git checkout -b
 <br />
-db = !sh -c 'git branch -d $1 && git push origin --delete $1' -
+db = !sh -c 'git branch -D $1 && git push origin --delete $1' -
 <br />
 lr = !git checkout .
 <br />
