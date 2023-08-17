@@ -69,5 +69,11 @@
     "key": "cmd+L",
     "command": "workbench.action.terminal.clear",
     "when": "terminalFocus"
+  },
+  // go to implementation
+  {
+    "key": "cmd+Enter",
+    "command": "editor.action.goToImplementation",
+    "when": "editorHasImplementationProvider && editorTextFocus && !isInEmbeddedEditor"
   }
 ]
