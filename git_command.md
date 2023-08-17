@@ -33,3 +33,5 @@ db = !sh -c 'git branch -D $1 && git push origin --delete $1' -
 lr = !git checkout .
 <br />
 a = !git add --all
+<br />
+rb = !git branch -m
