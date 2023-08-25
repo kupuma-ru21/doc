@@ -1,3 +1,8 @@
+# Check below before installing any extention
+
+- https://stackoverflow.com/questions/49391798/vs-code-turn-off-auto-close-tags-but-leave-on-autocomplete#:~:text=Go%20to%20File%20%3E%20Preferences%20%3E%20Settings,make%20it%20autocomplete%20for%20you.
+
+
 # Required(FrontEnd and BackEnd)
 
 - https://marketplace.visualstudio.com/items?itemName=tomphilbin.gruvbox-themes
