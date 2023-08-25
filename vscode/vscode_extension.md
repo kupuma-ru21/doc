@@ -7,6 +7,7 @@
 - https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces
 - https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
 - https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv
+- https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions
 
 # Optional(FrontEnd and BackEnd)
 
