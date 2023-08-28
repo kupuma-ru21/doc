@@ -13,6 +13,7 @@
 - https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
 - https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv
 - https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions
+- https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens
 
 # Optional(FrontEnd and BackEnd)
 
