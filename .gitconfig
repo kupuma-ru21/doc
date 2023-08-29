@@ -1,0 +1,18 @@
+# run git config --global -e and edit alias
+[alias]
+	get-default-branch = !git remote show origin | grep 'HEAD branch' | awk '{print $NF}'
+	ll = !git pull
+	sh = "!git push --set-upstream origin "$(git rev-parse --abbrev-ref HEAD)""
+	ch = !sh -c 'git stash && git checkout $1 $2 && git pull' -
+	re = !git reset --hard
+	t = !git tag
+	c = !sh -c 'git add --all && git commit -m \"$1\" && git rebase \"$(git get-default-branch)\" \"$(git rev-parse --abbrev-ref HEAD)\"' -
+	rc = !git reset --soft HEAD^
+	rs = !git stash pop
+	st = !git stash
+	m = !git merge
+	cb = !git checkout -b
+	db = !sh -c 'git branch -D $1 && git push origin --delete $1' -
+	lr = !git checkout .
+	a = !git add --all
+	rb = !git branch -m
