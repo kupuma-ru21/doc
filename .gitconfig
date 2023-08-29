@@ -1,6 +1,7 @@
 # run git config --global -e and edit alias
 [alias]
 	get-default-branch = !git remote show origin | grep 'HEAD branch' | awk '{print $NF}'
+	get-current-branch = !git rev-parse --abbrev-ref HEAD
 	ll = !git pull
 	sh = "!git push --set-upstream origin "$(git rev-parse --abbrev-ref HEAD)""
 	ch = !sh -c 'git stash && git checkout $1 $2 && git pull' -
