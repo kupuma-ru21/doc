@@ -3,13 +3,13 @@
 [alias]
     get-default-branch = !git remote show origin | grep 'HEAD branch' | awk '{print $NF}'
     get-current-branch = !git rev-parse --abbrev-ref HEAD
-    rebase-on-commit = !sh -c 'git rebase \"$(git get-default-branch)\" \"$(git get-current-branch)\"' -
+    rebase-after-commit = !sh -c 'git rebase \"$(git get-default-branch)\" \"$(git get-current-branch)\"' -
     ll = !git pull
-    sh = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
+    sh = "!git push --set-upstream origin \"$(get-current-branch)\""
     ch = !sh -c 'git stash && git checkout $1 $2 && git pull' -
     re = !git reset --hard
     t = !git tag
-    c = !git add --all && git commit -m
+    c = !sh -c 'git add --all && git commit -m \"$*\" && git rebase-after-commit' -
     rc = !git reset --soft HEAD^
     rs = !git stash pop
     st = !git stash
