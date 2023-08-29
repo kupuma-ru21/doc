@@ -1,12 +1,16 @@
 #### run git config --global -e
 
 [alias]
+    get-default-branch = !git remote show origin | grep 'HEAD branch' | awk '{print $NF}'
+    get-current-branch = !git rev-parse --abbrev-ref HEAD
+    rebase-after-commit = !sh -c 'git rebase \"$(git get-default-branch)\" \"$(git get-current-branch)\"' -
     ll = !git pull
-    sh = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
+    sh = "!git push --set-upstream origin \"$(git get-current-branch)\""
     ch = !sh -c 'git stash && git checkout $1 $2 && git pull' -
     re = !git reset --hard
     t = !git tag
-    c = !git add --all && git commit -m
+    a = !git add --all
+    c = !sh -c 'git a && git commit -m \"$*\" && git rebase-after-commit' -
     rc = !git reset --soft HEAD^
     rs = !git stash pop
     st = !git stash
@@ -14,5 +18,4 @@
     cb = !git checkout -b
     db = !sh -c 'git branch -D $1 && git push origin --delete $1' -
     lr = !git checkout .
-    a = !git add --all
     rb = !git branch -m
