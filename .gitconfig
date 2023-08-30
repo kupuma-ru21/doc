@@ -7,7 +7,7 @@
     commit-before-checkout = "!git a && git commit --no-verify -m \"chore: test\""
     checkout-default-branch = !sh -c 'git checkout \"$(git get-default-branch)\"' -
     ll = !git pull
-    sh = "!git push --set-upstream origin \"$(git get-current-branch)\""
+    sh = '!git push --set-upstream origin \"$(git get-current-branch)\"'
     ch = !sh -c 'git commit-before-checkout || git checkout-default-branch && git ll && git checkout $1' -
     re = !git reset --hard
     t = !git tag
