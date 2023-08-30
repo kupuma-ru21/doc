@@ -5,10 +5,10 @@
     get-current-branch = !git rev-parse --abbrev-ref HEAD
     rebase-after-commit = !sh -c 'git rebase \"$(git get-default-branch)\" \"$(git get-current-branch)\"' -
     commit-before-checkout = "!git a && git commit --no-verify -m \"chore: test\""
-    checkout-default-branch = !sh -c 'git checkout \"$(git get-default-branch)\"' -
+    pull-default-branch = "!git ll origin \"$(git get-default-branch)\""
     ll = !git pull
     sh = "!git push --set-upstream origin \"$(git get-current-branch)\""
-    ch = !sh -c 'git commit-before-checkout || git checkout-default-branch && git ll && git checkout $1' -
+    ch = !sh -c 'git commit-before-checkout || git pull-default-branch && git checkout $1' -
     re = !git reset --hard
     t = !git tag
     a = !git add --all
