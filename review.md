@@ -1,7 +1,3 @@
-- レビューの順序
-
-1. 正常系において、バグが起きてないか確認
-2. 1 でバグが起きてるなら、その時点でコメントして、一旦レビューは終了
-3. ローディングのハンドリングが行われてるか
-4. エラーのハンドリングが行われてるか
-5. コード周りのレビュー
+- https://qiita.com/hugehoge/items/aa0a6f5211d67878c0fe
+- https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables
+  
