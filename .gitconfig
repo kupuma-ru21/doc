@@ -4,12 +4,9 @@
     get-default-branch = !git remote show origin | grep 'HEAD branch' | awk '{print $NF}'
     get-current-branch = !git rev-parse --abbrev-ref HEAD
     rebase-after-commit = !sh -c 'git rebase \"$(git get-default-branch)\" \"$(git get-current-branch)\"' -
-    commit-before-checkout = "!git a && git commit --no-verify -m \"chore: test\""
-    pull-default-branch = "!git ll origin \"$(git get-default-branch)\""
-    checkout-default-branch = "!git checkout \"$(git get-default-branch)\""
     ll = !git pull
     sh = "!git push --set-upstream origin \"$(git get-current-branch)\""
-    ch = !sh -c 'git commit-before-checkout || git checkout-default-branch && git pull-default-branch && git checkout $1' -
+    ch = !sh -c 'git checkout $1 && git pull origin $1 || git fetch origin $1 && git checkout $1 && git pull origin $1' -
     re = !git reset --hard
     t = !git tag
     a = !git add --all
