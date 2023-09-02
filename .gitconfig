@@ -6,7 +6,7 @@
     rebase-after-commit = !sh -c 'git rebase \"$(git get-default-branch)\" \"$(git get-current-branch)\"' -
     ll = !git pull
     sh = "!git push --set-upstream origin \"$(git get-current-branch)\""
-    ch = !sh -c 'git checkout $1 && git pull origin $1 || git fetch origin $1 && git checkout $1 && git pull origin $1' -
+    ch = !sh -c '(git checkout $1 || (git fetch origin $1 && git checkout $1)) && (git ll && git get-current-branch || git get-current-branch)' -
     re = !git reset --hard
     t = !git tag
     a = !git add --all
