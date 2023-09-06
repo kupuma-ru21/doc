@@ -3,7 +3,6 @@
 [alias]
     get-default-branch = !git remote show origin | grep 'HEAD branch' | awk '{print $NF}'
     get-current-branch = !git rev-parse --abbrev-ref HEAD
-    rebase-after-commit = !sh -c 'git rebase \"$(git get-default-branch)\" \"$(git get-current-branch)\"' -
     ll = !git pull
     sh = "!git push --set-upstream origin \"$(git get-current-branch)\""
     ch = !sh -c '(git checkout $1 || (git fetch origin $1 && git checkout $1)) && (git ll && git get-current-branch || git get-current-branch)' -
