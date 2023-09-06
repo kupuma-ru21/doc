@@ -10,7 +10,7 @@
     re = !git reset --hard
     t = !git tag
     a = !git add --all
-    c = !sh -c 'git a && git commit -m \"$*\" && git rebase-after-commit' -
+    c = !sh -c 'git a && git commit -m \"$*\"' -
     rc = !git reset --soft HEAD^
     rs = !git stash pop
     st = !git stash
