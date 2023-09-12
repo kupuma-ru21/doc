@@ -10,6 +10,7 @@
     t = !git tag
     a = !git add --all
     c = !sh -c 'git a && git commit -m \"$*\"' -
+    cf = !sh -c 'git a && git commit --no-verify -m \"chore: wip\"' -
     rc = !git reset --soft HEAD^
     rs = !git stash pop
     st = !git stash
