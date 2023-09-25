@@ -5,3 +5,4 @@
 - https://chrome.google.com/webstore/detail/react-inspector/gkkcgbepkkhfnnjolcaggogkjodmlpkh
 - https://chrome.google.com/webstore/detail/codenocall/incnchiebjmdeedaeiopjfbdblnafdoe
 - https://chrome.google.com/webstore/detail/google-dictionary-by-goog/mgijmajocgfcbeboacabfgobmjgjcoja/related
+- https://chrome.google.com/webstore/detail/autofill/nlmmgnhgdeffjkdckmikfpnddkbbfkkk
