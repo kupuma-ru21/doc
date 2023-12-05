@@ -14,6 +14,6 @@
     rs = !git stash pop
     st = !git stash
     cb = !git checkout -b
-    db = !sh -c 'git branch -D $1 && git push origin --delete $1' -
+    db = !sh -c 'git branch -D $1 && git push origin --delete $1 --no-verify' -
     lr = !git checkout .
     rb = !git branch -m
