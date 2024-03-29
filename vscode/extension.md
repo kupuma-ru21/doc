@@ -14,6 +14,7 @@
 - https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv
 - https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions
 - https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens
+- https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case
 
 # Optional(FrontEnd and BackEnd)
 
