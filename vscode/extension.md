@@ -2,7 +2,6 @@
 
 - https://stackoverflow.com/questions/49391798/vs-code-turn-off-auto-close-tags-but-leave-on-autocomplete#:~:text=Go%20to%20File%20%3E%20Preferences%20%3E%20Settings,make%20it%20autocomplete%20for%20you.
 
-
 # Required(FrontEnd and BackEnd)
 
 - https://marketplace.visualstudio.com/items?itemName=tomphilbin.gruvbox-themes
@@ -26,6 +25,7 @@
 - https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag
 - https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag
 - https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost
+- https://marketplace.visualstudio.com/items?itemName=yusukehirao.vscode-markuplint
 
 # Optional(FrontEnd Only)
 
@@ -38,6 +38,7 @@
 # Optional(BackEnd Only)
 
 - https://marketplace.visualstudio.com/items?itemName=golang.go
+
   - https://stackoverflow.com/questions/71101439/how-can-i-configure-the-staticcheck-linter-in-visual-studio-code
 
 - https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml
