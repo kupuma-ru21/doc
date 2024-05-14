@@ -43,3 +43,6 @@
   - https://stackoverflow.com/questions/71101439/how-can-i-configure-the-staticcheck-linter-in-visual-studio-code
 
 - https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml
+
+# IaC
+- https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform
