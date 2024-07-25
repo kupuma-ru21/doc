@@ -3,4 +3,5 @@
 - https://formulae.brew.sh/cask/alfred
 - https://cli.github.com/
 - https://www.charlesproxy.com/
+  - https://qiita.com/usagimaru/items/d340e87da98e62f99b60
 - https://formulae.brew.sh/cask/clipy
