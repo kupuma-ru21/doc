@@ -1,1 +1,0 @@
-- オブジェクト型内部はメソッドよりプロパティの方がtypeSafe(https://susisu.hatenablog.com/entry/2021/10/31/233246#bivariant-methods)
