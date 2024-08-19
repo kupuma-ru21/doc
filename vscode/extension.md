@@ -35,6 +35,7 @@
 - https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
 - https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components
 - https://marketplace.visualstudio.com/items?itemName=sainoba.px-to-rem
+- https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
 
 # Optional(BackEnd Only)
 
