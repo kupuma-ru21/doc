@@ -3,3 +3,4 @@
 - https://fortee.jp/phperkaigi-2022/proposal/0c899d14-2884-4a5c-952f-05758b4e7eee
 - https://zenn.dev/yhase_rqp/articles/afa768d564a78c
 - https://susisu.hatenablog.com/entry/2021/10/31/233246#bivariant-methods
+- https://qiita.com/teradonburi/items/5b8f79d26e1b319ac44f#%E8%A1%A8%E7%A4%BA%E9%9D%9E%E8%A1%A8%E7%A4%BA%E3%81%8C%E9%A0%BB%E7%B9%81%E3%81%AA%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E5%86%8D%E3%83%AC%E3%83%B3%E3%83%80%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%AE%E8%B2%A0%E8%8D%B7%E3%82%92%E6%B8%9B%E3%82%89%E3%81%99
