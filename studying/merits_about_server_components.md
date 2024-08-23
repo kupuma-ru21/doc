@@ -1,1 +1,2 @@
 - https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#when-to-use-server-and-client-components
+- https://remix.run/docs/en/main/discussion/progressive-enhancement#performance
