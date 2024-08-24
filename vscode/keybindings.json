@@ -21,12 +21,6 @@
     "command": "workbench.action.splitEditorRight",
     "when": "editorTextFocus"
   },
-  // move editor left
-  {
-    "key": "shift+ctrl+1",
-    "command": "workbench.action.moveEditorToFirstGroup",
-    "when": "editorTextFocus"
-  },
   // move editor right
   {
     "key": "shift+ctrl+2",
@@ -76,16 +70,22 @@
     "command": "editor.action.goToImplementation",
     "when": "editorHasImplementationProvider && editorTextFocus && !isInEmbeddedEditor"
   },
-  // show call hierarchy
-  {
-    "key": "shift+alt+Enter",
-    "command": "references-view.showCallHierarchy",
-    "when": "editorHasCallHierarchyProvider"
-  },
   // go to references
   {
     "key": "alt+Enter",
     "command": "editor.action.goToReferences",
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+  },
+  // fold source codes
+  {
+    "key": "alt+right",
+    "command": "editor.foldRecursively",
+    "when": "editorTextFocus"
+  },
+  // unfold source codes
+  {
+    "key": "alt+left",
+    "command": "editor.unfoldRecursively",
+    "when": "editorTextFocus"
   }
 ]
