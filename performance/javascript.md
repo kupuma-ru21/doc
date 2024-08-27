@@ -1,0 +1,1 @@
+- https://jsprimer.net/basic/async/#async-function-array
