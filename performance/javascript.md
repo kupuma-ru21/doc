@@ -1,1 +1,1 @@
-- https://jsprimer.net/basic/async/#async-function-array
+- https://jsprimer.net/basic/async/#relationship-promise-async-function
