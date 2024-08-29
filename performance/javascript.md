@@ -1,2 +1,1 @@
 - https://jsprimer.net/basic/async/#relationship-promise-async-function
-- https://typescript-eslint.io/rules/consistent-type-imports/
