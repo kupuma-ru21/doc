@@ -1,2 +1,3 @@
 - https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/fetchPriority
 - https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading
+  - https://stackoverflow.com/questions/77744344/is-it-okay-to-use-both-fetchpriority-high-and-loading-eager-in-img-tag#:~:text=Overall%2C%20fetchpriority%20is%20concerned%20with,immediately%20start%20fetching%20the%20resource.&text=loading%3D%22eager%22%20is%20the,of%20the%20browser%20%2D%3E%20web.
