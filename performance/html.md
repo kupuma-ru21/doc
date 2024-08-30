@@ -1,0 +1,1 @@
+- https://html.spec.whatwg.org/multipage/links.html#links-created-by-a-and-area-elements
