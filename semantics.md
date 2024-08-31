@@ -1,3 +1,0 @@
-- https://validator.w3.org/
-- https://markuplint.dev/docs/guides
-- https://jigsaw.w3.org/css-validator/

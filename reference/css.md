@@ -1,0 +1,2 @@
+- https://jigsaw.w3.org/css-validator/
+- [initialize css](https://developer.mozilla.org/en-US/docs/Web/CSS/all)
