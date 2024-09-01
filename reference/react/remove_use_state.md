@@ -7,11 +7,8 @@ export const Component: React.FC = () => {
     <>
       <input
         onChange={e => {
-          if (e.target.value === "") {
-            fieldsetRef.current?.setAttribute("disabled", "");
-          } else {
-            fieldsetRef.current?.removeAttribute("disabled");
-          }
+          if (fieldsetRef.current === null) return;
+          fieldsetRef.current.disabled = e.target.value === "";
         }}
       />
       <fieldset disabled ref={fieldsetRef}>
@@ -20,4 +17,5 @@ export const Component: React.FC = () => {
     </>
   );
 };
+
 ```
