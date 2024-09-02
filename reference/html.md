@@ -1,3 +1,4 @@
 - https://html.spec.whatwg.org/multipage/links.html#links-created-by-a-and-area-elements
 - https://validator.w3.org/
 - https://markuplint.dev/docs/guides
+- [fieldset](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset)
