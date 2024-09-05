@@ -21,7 +21,6 @@
 
 # Required(FrontEnd Only)
 
-- https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag
 - https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag
 - https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag
 - https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost
