@@ -1,7 +1,7 @@
 ### General
 
 - https://formulae.brew.sh/cask/battery
-- https://formulae.brew.sh/cask/fig
+- https://formulae.brew.sh/cask/amazon-q
 - https://formulae.brew.sh/cask/alfred
 - https://formulae.brew.sh/cask/visual-studio-code
 
