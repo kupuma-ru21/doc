@@ -3,7 +3,7 @@
 - https://formulae.brew.sh/cask/battery
 - https://formulae.brew.sh/cask/fig
 - https://formulae.brew.sh/cask/alfred
-- https://cli.github.com/
+- https://formulae.brew.sh/cask/visual-studio-code
 
 ### Development
 
