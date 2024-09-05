@@ -1,5 +1,6 @@
 # run `code ~/.zlogin`
 
+```
 alias g='git'
 alias c='clear'
 alias e='code .'
@@ -18,3 +19,4 @@ precmd () { vcs_info }
 PROMPT='
 [%B%F{red}%n@%m%f%b:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f
 %F{yellow}$%f '
+```
