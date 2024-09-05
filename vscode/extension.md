@@ -11,7 +11,6 @@
 - https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces
 - https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
 - https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv
-- https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions
 - https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens
 - https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case
 - https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
