@@ -1,3 +1,5 @@
+- https://qiita.com/non0311/items/28a32d6318d8c85b688c
+
 #### run `git config --global core.editor code && git config --global -e`
 
 ```
