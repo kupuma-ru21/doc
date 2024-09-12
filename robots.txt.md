@@ -1,0 +1,1 @@
+- https://lucy.ne.jp/bazubu/robots-txt-16678.html

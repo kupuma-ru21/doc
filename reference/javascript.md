@@ -1,1 +1,2 @@
 - https://jsprimer.net/basic/async/#relationship-promise-async-function
+- https://remix.run/docs/en/main/guides/gotchas#typeof-window-checks
