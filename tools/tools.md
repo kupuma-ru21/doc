@@ -17,3 +17,7 @@
 
 - https://cloudconvert.com/
 - https://whimsical.com/
+
+- debug localhost on iphone
+  - https://qiita.com/yasuguchio/items/6f84a31190955c0335dd
+  - https://github.com/vitejs/vite/discussions/3396#discussioncomment-11069860
