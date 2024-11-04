@@ -25,6 +25,7 @@
 - https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost
 - https://marketplace.visualstudio.com/items?itemName=deque-systems.vscode-axe-linter
 - https://marketplace.visualstudio.com/items?itemName=yusukehirao.vscode-markuplint
+- https://marketplace.visualstudio.com/items?itemName=MylesMurphy.prettify-ts
 
 # Optional(FrontEnd Only)
 
