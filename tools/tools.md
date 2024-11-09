@@ -27,7 +27,7 @@
 ## Backend
 
 - [pgadmin4](https://formulae.brew.sh/cask/pgadmin4)
-- [sequel-ace](https://formulae.brew.sh/cask/sequel-ace)
+
 
 # Design
 
