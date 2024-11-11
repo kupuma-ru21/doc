@@ -12,7 +12,7 @@
 
 - [Charles proxy](https://formulae.brew.sh/cask/charles)
   - https://qiita.com/usagimaru/items/d340e87da98e62f99b60
-    - I have to set up "import" in SSL Proxying Settings
+    - I have to set up just "import" in SSL Proxying Settings
     - I have to install charles certificate in key chain of login.
     - https://github.com/user-attachments/assets/4d7673a3-e53d-4231-a901-e732b6070452
 
