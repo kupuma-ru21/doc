@@ -1,9 +1,14 @@
 {
-	"[go]": {
-		"editor.defaultFormatter": "golang.go",
-		"editor.formatOnSave": true
-	},
-	"gopls": { "ui.diagnostic.staticcheck": true },
-	"editor.guides.bracketPairs": true,
-  	"editor.bracketPairColorization.enabled": true
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.formatOnSave": true
+  },
+  "gopls": { "ui.diagnostic.staticcheck": true },
+  "editor.guides.bracketPairs": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": "explicit",
+    // REF: https://dev.to/krisplatis/auto-add-missing-imports-on-file-save-in-vs-code-1b89
+    "source.organizeImports": "explicit"
+  }
 }
