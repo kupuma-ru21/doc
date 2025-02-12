@@ -44,13 +44,15 @@
   // move between terminal
   {
     "key": "cmd+1",
-    "command": "workbench.action.terminal.focusPreviousPane",
-    "when": "terminalFocus"
+    "command": "workbench.action.terminal.focusAtIndex1"
   },
   {
     "key": "cmd+2",
-    "command": "workbench.action.terminal.focusNextPane",
-    "when": "terminalFocus"
+    "command": "workbench.action.terminal.focusAtIndex2"
+  },
+  {
+    "key": "cmd+3",
+    "command": "workbench.action.terminal.focusAtIndex3"
   },
   // terminate terminal
   {
