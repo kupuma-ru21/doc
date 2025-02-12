@@ -15,7 +15,7 @@
     cf = !sh -c 'git a && git commit --no-verify -m \"chore: wip\"' -
     rc = !git reset --soft HEAD^
     rs = !git stash pop
-    st = !git stash
+    st = !git stash --include-untracked
     cb = !git checkout -b
     db = !sh -c 'git branch -D $1 && git push origin --delete $1 --no-verify' -
     lr = !git checkout .
