@@ -18,7 +18,7 @@
     st = !git stash --include-untracked
     cb = !git checkout -b
     db = !sh -c 'git branch -D $1 && git push origin --delete $1 --no-verify' -
-    lr = !git checkout .
+    lr = !sh -c 'git checkout . && git clean -f' -
     rb = !git branch -m
     rmc = !git reset --hard HEAD~1
 ```
