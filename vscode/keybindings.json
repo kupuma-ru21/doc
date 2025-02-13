@@ -50,6 +50,11 @@
     "command": "workbench.action.terminal.focusAtIndex3",
     "when": "terminalFocus"
   },
+  {
+    "key": "cmd+4",
+    "command": "workbench.action.terminal.focusAtIndex4",
+    "when": "terminalFocus"
+  },
 
   // terminate terminal
   {
