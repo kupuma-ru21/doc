@@ -14,9 +14,10 @@ alias e='code .'
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:*' formats "[branch: %b]"
+zstyle ':vcs_info:*' formats "branch: %b"
 precmd () { vcs_info }
 
-PROMPT='%F{red}[dir: %~]%f%F{cyan}$vcs_info_msg_0_%f%F{yellow}
+PROMPT='%F{red}dir: %~
+%f%F{cyan}$vcs_info_msg_0_%f%F{yellow}
 $%f '
 ```
