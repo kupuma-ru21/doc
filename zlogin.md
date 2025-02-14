@@ -1,8 +1,12 @@
-# run `code ~/.zlogin`
+- run `code ~/.zlogin`
+
+```
+code ~/.zlogin
+```
 
 ```
 alias g='git'
-alias c='clear'
+alias c='clear && printf "\e[3J"'
 alias e='code .'
 
 # refer to tarminal setting
@@ -10,13 +14,9 @@ alias e='code .'
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
+zstyle ':vcs_info:*' formats "[branch: %b]"
 precmd () { vcs_info }
 
-PROMPT='
-[%B%F{red}%n@%m%f%b:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f
-%F{yellow}$%f '
+PROMPT='%F{red}[dir: %~]%f%F{cyan}$vcs_info_msg_0_%f%F{yellow}
+$%f '
 ```
