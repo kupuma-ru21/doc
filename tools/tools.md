@@ -7,6 +7,7 @@
 # Development
 
 - [Vscode](https://formulae.brew.sh/cask/visual-studio-code)
+- [gh](https://formulae.brew.sh/formula/gh)
 
 ## Frontend
 

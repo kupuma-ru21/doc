@@ -1,4 +1,3 @@
-- install [gh](https://formulae.brew.sh/formula/gh)
 - run `code ~/.zshrc`
 
 ```
