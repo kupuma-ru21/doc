@@ -20,4 +20,5 @@
     lr = !sh -c 'git checkout . && git clean -f' -
     rb = !git branch -m
     rmc = !git reset --hard HEAD~1
+    create-pr = gh pr create -a kupuma-ru21
 ```
