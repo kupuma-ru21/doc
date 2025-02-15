@@ -38,13 +38,14 @@ get_git_pr_url() {
   fi
 }
 
-pull-request() {
-  gh pr create -a kupuma-ru21 -t "$*" -b "" --draft
-}
-
 PROMPT='%F{red}Dir: %~
 %f%F{cyan}$vcs_info_msg_0_%f
 %F{blue}$(get_git_repo_url)%f
 %F{green}$(get_git_pr_url)%f
 %F{yellow}$%f '
+
+pull-request() {
+  gh pr create -a kupuma-ru21 -t "$*" -b "" --draft
+}
+
 ```
