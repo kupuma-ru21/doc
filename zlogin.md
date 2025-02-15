@@ -9,10 +9,6 @@ alias g='git'
 alias c='clear && printf "\e[3J"'
 alias e='code .'
 
-alias g='git'
-alias c='clear && printf "\e[3J"'
-alias e='code .'
-
 # refer to terminal setting
 # https://bottoms-programming.com/archives/termina-git-branch-name-zsh.html#toc1
 autoload -Uz vcs_info
@@ -40,6 +36,10 @@ get_git_pr_url() {
       echo "PR: Not Created"
     fi
   fi
+}
+
+pull-request() {
+  gh pr create -a kupuma-ru21 -t "$*" -b "" --draft
 }
 
 PROMPT='%F{red}Dir: %~
