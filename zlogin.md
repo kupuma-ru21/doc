@@ -9,10 +9,6 @@ alias g='git'
 alias c='clear && printf "\e[3J"'
 alias e='code .'
 
-alias g='git'
-alias c='clear && printf "\e[3J"'
-alias e='code .'
-
 # refer to terminal setting
 # https://bottoms-programming.com/archives/termina-git-branch-name-zsh.html#toc1
 autoload -Uz vcs_info
