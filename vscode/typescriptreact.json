@@ -34,5 +34,10 @@
     "prefix": "arrowF",
     "body": ["const sample = () => {$1};"],
     "description": "Log output to const"
+  },
+  "Print useEffect": {
+    "prefix": "useEffect",
+    "body": ["useEffect(() => {}, []);"],
+    "description": "Output useEffect"
   }
 }
