@@ -18,6 +18,16 @@ get_git_repo_url() {
   echo "$repo_url"
 }
 
+get_git_my_prs_url() {
+  local repo_url=$(get_git_repo_url)
+  local username=$(gh api user --jq '.login' 2>/dev/null)
+  if [[ -n "$repo_url" && -n "$username" ]]; then
+    echo "$repo_url/pulls/$username"
+  else
+    echo ""
+  fi
+}
+
 get_git_branch() {
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   echo "$branch"
@@ -31,6 +41,7 @@ get_git_pr_url() {
 
 PROMPT='%F{cyan}Branch: $(get_git_branch | sed -e "s/^$/Not Found/")%f
 %F{blue}Repo: $(get_git_repo_url | sed -e "s/^$/Not Found/")%f
+%F{magenta}MyPRs: $(get_git_my_prs_url | sed -e "s/^$/Not Found/")%f
 %F{green}PR: $(get_git_pr_url | sed -e "s/^$/Not Found/")%f
 %F{red}Dir: %~
 %F{yellow}$%f '
