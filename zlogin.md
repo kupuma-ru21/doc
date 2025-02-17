@@ -1,4 +1,26 @@
-- run `code ~/.zshrc`
+- Setup `alias show-pull-requests`
+
+<!-- https://github.com/tecfu/tty-table -->
+
+```
+npm install tty-table -g
+mkdir -p ~/.config/tty-table
+code ~/.config/tty-table/github-pr.json
+```
+
+- Update github-pr.json
+
+```
+[
+  { "align": "left", "alias": "title", "width": 50 },
+  { "align": "left", "alias": "branch", "color": "cyan", "width": 40 },
+  { "align": "left", "alias": "url", "color": "green", "width": 60 }
+]
+
+
+```
+
+- Run `code ~/.zshrc`
 
 ```
 code ~/.zshrc
@@ -8,6 +30,10 @@ code ~/.zshrc
 alias g='git'
 alias c='clear && printf "\e[3J"'
 alias e='code .'
+alias show-pull-requests='gh pr list --json "title,headRefName,url" --author "kupuma-ru21" \
+  | jq -r "[.[] | { title: .title, branch: .headRefName, url: .url }]" \
+  | tty-table --format json --header $HOME/.config/tty-table/github-pr.json'
+
 
 # refer to terminal setting
 # https://bottoms-programming.com/archives/termina-git-branch-name-zsh.html#toc1
@@ -35,7 +61,7 @@ PROMPT='%F{cyan}Branch: $(get_git_branch | sed -e "s/^$/Not Found/")%f
 %F{red}Dir: %~
 %F{yellow}$%f '
 
-pull-request() {
+create-pull-request() {
   gh pr create -a kupuma-ru21 -t "$*" -b "" --draft
 }
 
