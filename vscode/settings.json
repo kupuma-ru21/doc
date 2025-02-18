@@ -7,8 +7,10 @@
   "editor.guides.bracketPairs": true,
   "editor.bracketPairColorization.enabled": true,
   "editor.codeActionsOnSave": {
-    "source.addMissingImports": "explicit",
-    // REF: https://dev.to/krisplatis/auto-add-missing-imports-on-file-save-in-vs-code-1b89
-    "source.organizeImports": "explicit"
-  }
+    "source.organizeImports": "explicit", // REF: https://dev.to/krisplatis/auto-add-missing-imports-on-file-save-in-vs-code-1b89
+    "source.addMissingImports": "explicit"
+  },
+  "[markdown]": { "editor.formatOnSave": false }, // REF: https://jsnotice.com/posts/2021-05-27/
+  "window.zoomLevel": 2,
+  "editor.tabSize": 2
 }

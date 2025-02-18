@@ -1,3 +1,6 @@
+# Setting Up
+- [change default font size of terminal](https://support.apple.com/en-ca/guide/terminal/trmltxt/mac)
+
 # General
 
 - https://formulae.brew.sh/cask/battery
@@ -6,7 +9,10 @@
 
 # Development
 
-- [Vscode](https://formulae.brew.sh/cask/visual-studio-code)
+- [VScode](https://formulae.brew.sh/cask/visual-studio-code)
+  - change default font size
+    - Open Settings, input "font size" on search bar and set "18"
+
 - [gh](https://formulae.brew.sh/formula/gh)
 
 ## Frontend
@@ -20,7 +26,6 @@
 ### Debug
 
 - [Android debug](https://techblog.istyle.co.jp/archives/6078)
-
   - [Android studio](https://formulae.brew.sh/cask/android-studio)
 
 - Localhost on iphone
