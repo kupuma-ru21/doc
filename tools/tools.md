@@ -33,9 +33,7 @@
   - https://github.com/vitejs/vite/discussions/3396#discussioncomment-11069860
 
 ## Backend
-
-- [pgadmin4](https://formulae.brew.sh/cask/pgadmin4)
-  - [how to connect Cloud sql](https://cshiva.medium.com/connecting-to-gcps-cloud-sql-postgressql-from-pgadmin-3-simple-steps-2f4530488a4c)
+- [dbeaver](https://dbeaver.io/download/)
 
 # Design
 
