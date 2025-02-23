@@ -1,18 +1,32 @@
 {
-  // Language
-  "[typescript, jsonc]": {
+  // Typescript
+  "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
+  "typescript.surveys.enabled": false,
+  // Go
   "[go]": {
     "editor.defaultFormatter": "golang.go",
     "editor.formatOnSave": true
   },
   "gopls": { "ui.diagnostic.staticcheck": true },
+  "go.showWelcome": false,
+  // Javascript
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  // Json
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  // Markdown
   "[markdown]": { "editor.formatOnSave": false }, // REF: https://jsnotice.com/posts/2021-05-27/
   // Terminal
   "terminal.integrated.tabs.enabled": false,
@@ -43,5 +57,7 @@
   // Workbench
   "workbench.colorTheme": "Gruvbox Dark (Hard)",
   "workbench.iconTheme": "vscode-icons",
-  "workbench.editor.enablePreview": false
+  "workbench.editor.enablePreview": false,
+  "workbench.welcomePage.walkthroughs.openOnInstall": false,
+  "workbench.startupEditor": "none"
 }
