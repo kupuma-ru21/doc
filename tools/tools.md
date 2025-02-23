@@ -10,9 +10,6 @@
 # Development
 
 - [VScode](https://formulae.brew.sh/cask/visual-studio-code)
-  - change default font size
-    - Open Settings, input "font size" on search bar and set "18"
-
 - [gh](https://formulae.brew.sh/formula/gh)
 
 ## Frontend

@@ -1,3 +1,4 @@
+// remove keybindings of workbench.action.showAllSymbols
 // do "cmd + shift + p" then input "shortcuts json"
 [
   // move to problems
@@ -12,21 +13,14 @@
 
   // split editor right
   {
-    "key": "shift+alt+2",
+    "key": "cmd+t",
     "command": "workbench.action.splitEditorRight",
-    "when": "editorTextFocus"
-  },
-
-  // move editor right
-  {
-    "key": "shift+ctrl+2",
-    "command": "workbench.action.moveEditorToLastGroup",
     "when": "editorTextFocus"
   },
 
   // split terminal right
   {
-    "key": "shift+alt+2",
+    "key": "cmd+t",
     "command": "workbench.action.terminal.split",
     "when": "terminalFocus"
   },
@@ -102,6 +96,12 @@
   {
     "key": "escape",
     "command": "workbench.action.focusActiveEditorGroup",
-    "when": "panelFocus"
+    "when": "panelFocus && !terminalFindVisible"
+  },
+
+  // show context menu
+  {
+    "key": "cmd+g",
+    "command": "editor.action.showContextMenu"
   }
 ]

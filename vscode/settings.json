@@ -1,16 +1,47 @@
 {
+  // Language
+  "[typescript, jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
   "[go]": {
     "editor.defaultFormatter": "golang.go",
     "editor.formatOnSave": true
   },
   "gopls": { "ui.diagnostic.staticcheck": true },
+  "[markdown]": { "editor.formatOnSave": false }, // REF: https://jsnotice.com/posts/2021-05-27/
+  // Terminal
+  "terminal.integrated.tabs.enabled": false,
+  "terminal.integrated.letterSpacing": -0.5,
+  // Editor
   "editor.guides.bracketPairs": true,
-  "editor.bracketPairColorization.enabled": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit", // REF: https://dev.to/krisplatis/auto-add-missing-imports-on-file-save-in-vs-code-1b89
-    "source.addMissingImports": "explicit"
+    "source.addMissingImports": "explicit",
+    "source.fixAll.eslint": "explicit"
   },
-  "[markdown]": { "editor.formatOnSave": false }, // REF: https://jsnotice.com/posts/2021-05-27/
-  "window.zoomLevel": 2,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "editor.glyphMargin": false,
+  "editor.minimap.enabled": false,
+  "editor.letterSpacing": -0.5,
+  "editor.rename.enablePreview": false,
+  "extensions.ignoreRecommendations": true,
+  "editor.wordWrap": "on",
+  "editor.renderControlCharacters": true,
+  "editor.accessibilitySupport": "off",
+  // Window
+  "window.zoomLevel": 1.5,
+  // Files
+  "files.insertFinalNewline": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.trimTrailingWhitespace": true,
+  // Workbench
+  "workbench.colorTheme": "Gruvbox Dark (Hard)",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.editor.enablePreview": false
 }
