@@ -1,10 +1,15 @@
 {
   // Typescript
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
   "typescript.surveys.enabled": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
   // Go
   "[go]": {
     "editor.defaultFormatter": "golang.go",
@@ -17,6 +22,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
+  "javascript.updateImportsOnFileMove.enabled": "always",
   // Json
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -47,6 +53,7 @@
   "editor.wordWrap": "on",
   "editor.renderControlCharacters": true,
   "editor.accessibilitySupport": "off",
+  "editor.mouseWheelScrollSensitivity": 5,
   // Window
   "window.zoomLevel": 1.5,
   "window.commandCenter": false,
@@ -62,5 +69,8 @@
   "workbench.editor.enablePreview": false,
   "workbench.welcomePage.walkthroughs.openOnInstall": false,
   "workbench.startupEditor": "none",
-  "workbench.activityBar.location": "hidden"
+  "workbench.activityBar.location": "hidden",
+  // Explorer
+  "explorer.confirmDelete": false,
+  "explorer.compactFolders": false
 }
