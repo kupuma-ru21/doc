@@ -14,6 +14,7 @@
 - https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens
 - https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case
 - https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
+- https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.activitusbar
 
 # Optional(FrontEnd and BackEnd)
 

@@ -49,6 +49,8 @@
   "editor.accessibilitySupport": "off",
   // Window
   "window.zoomLevel": 1.5,
+  "window.commandCenter": false,
+  "window.title": " ",
   // Files
   "files.insertFinalNewline": true,
   "files.autoSave": "afterDelay",
@@ -59,5 +61,6 @@
   "workbench.iconTheme": "vscode-icons",
   "workbench.editor.enablePreview": false,
   "workbench.welcomePage.walkthroughs.openOnInstall": false,
-  "workbench.startupEditor": "none"
+  "workbench.startupEditor": "none",
+  "workbench.activityBar.location": "hidden"
 }
