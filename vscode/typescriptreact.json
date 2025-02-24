@@ -39,5 +39,10 @@
     "prefix": "useEffect",
     "body": ["useEffect(() => {}, []);"],
     "description": "Output useEffect"
+  },
+  "Print useState": {
+    "prefix": "useState",
+    "body": ["const [] = useState();"],
+    "description": "Output useState"
   }
 }
