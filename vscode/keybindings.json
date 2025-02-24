@@ -1,4 +1,5 @@
-// remove keybindings of workbench.action.showAllSymbols
+// remove default keybindings of "cmd+t"
+// remove default keybindings of "cmd+shift+g"
 // do "cmd + shift + p" then input "shortcuts json"
 [
   // move to problems
@@ -103,5 +104,11 @@
   {
     "key": "cmd+g",
     "command": "editor.action.showContextMenu"
+  },
+
+  // show context menu
+  {
+    "key": "cmd+shift+g",
+    "command": "workbench.view.scm"
   }
 ]
