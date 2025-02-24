@@ -110,5 +110,12 @@
   {
     "key": "cmd+shift+g",
     "command": "workbench.view.scm"
+  },
+
+  // filter the files and folders in the Explorer : https://code.visualstudio.com/docs/getstarted/userinterface#_advanced-tree-navigation
+  {
+    "key": "cmd+f",
+    "command": "list.find",
+    "when": "listFocus && listSupportsFind"
   }
 ]
