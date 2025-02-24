@@ -112,10 +112,24 @@
     "command": "workbench.view.scm"
   },
 
-  // filter the files and folders in the Explorer : https://code.visualstudio.com/docs/getstarted/userinterface#_advanced-tree-navigation
+  // filter the files and folders in the Explorer
+  // REF: https://code.visualstudio.com/docs/getstarted/userinterface#_advanced-tree-navigation
   {
     "key": "cmd+f",
     "command": "list.find",
     "when": "listFocus && listSupportsFind"
+  },
+
+  // move between diffs
+  // REF: https://github.com/microsoft/vscode/issues/95068#issuecomment-723842970
+  {
+    "key": "cmd+1",
+    "command": "workbench.action.compareEditor.focusSecondarySide",
+    "when": "isInDiffEditor"
+  },
+  {
+    "key": "cmd+2",
+    "command": "workbench.action.compareEditor.focusPrimarySide",
+    "when": "isInDiffEditor"
   }
 ]
