@@ -32,6 +32,11 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
+  // Graphql
+  "[graphql]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
   // Markdown
   "[markdown]": { "editor.formatOnSave": false }, // REF: https://jsnotice.com/posts/2021-05-27/
   // Terminal
