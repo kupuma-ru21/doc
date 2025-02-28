@@ -11,7 +11,19 @@ alias e='code .'
 
 # refer to terminal setting
 # https://bottoms-programming.com/archives/termina-git-branch-name-zsh.html#toc1
+autoload -Uz vcs_info
 setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u%b%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+
+PROMPT='
+%F{cyan}Branch: $vcs_info_msg_0_%f
+%F{red}Dir:%~%f
+%F{yellow}$%f '
 
 get_git_repo_url() {
   local repo_url=$(git remote get-url origin 2>/dev/null | sed -e 's/git@github.com:/https:\/\/github.com\//' -e 's/\.git$//')
@@ -28,23 +40,25 @@ get_git_my_prs_url() {
   fi
 }
 
-get_git_branch() {
-  local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  echo "$branch"
-}
-
 get_git_pr_url() {
-  local branch=$(get_git_branch)
+  local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   local pr_url=$(gh pr list --json url,headRefName -q '.[] | select(.headRefName=="'"$branch"'") | .url' 2>/dev/null)
   echo "$pr_url"
 }
 
-PROMPT='%F{cyan}Branch: $(get_git_branch | sed -e "s/^$/Not Found/")%f
-%F{blue}Repo: $(get_git_repo_url | sed -e "s/^$/Not Found/")%f
-%F{magenta}MyPRs: $(get_git_my_prs_url | sed -e "s/^$/Not Found/")%f
-%F{green}PR: $(get_git_pr_url | sed -e "s/^$/Not Found/")%f
-%F{red}Dir: %~
-%F{yellow}$%f '
+meta() {
+  local repo_url=$(get_git_repo_url)
+  local my_prs_url=$(get_git_my_prs_url)
+  local pr_url=$(get_git_pr_url)
+
+  local BLUE="\033[0;34m"
+  local MAGENTA="\033[0;35m"
+  local GREEN="\033[0;32m"
+
+  echo -e "${BLUE}Repo: ${repo_url:-Not Found}"
+  echo -e "${MAGENTA}MyPRs: ${my_prs_url:-Not Found}"
+  echo -e "${GREEN}PR: ${pr_url:-Not Found}"
+}
 
 pull-request() {
   gh pr create -a kupuma-ru21 -t "$*" -b "" --draft
