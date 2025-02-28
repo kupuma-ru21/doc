@@ -17,6 +17,7 @@
   },
   "gopls": { "ui.diagnostic.staticcheck": true },
   "go.showWelcome": false,
+  "go.toolsManagement.autoUpdate": true,
   // Javascript
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
