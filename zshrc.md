@@ -61,7 +61,7 @@ meta() {
 }
 
 pull-request() {
-  gh pr create -a kupuma-ru21 -t "$*" -b "" --draft
+  gh pr create -a kupuma-ru21 -t "$(git rev-parse --abbrev-ref HEAD)" -b ""
 }
 
 ```
