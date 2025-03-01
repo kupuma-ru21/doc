@@ -14,14 +14,14 @@ alias e='code .'
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u%b%f"
+zstyle ':vcs_info:git:*' stagedstr " [staged]"
+zstyle ':vcs_info:git:*' unstagedstr " [changed]"
+zstyle ':vcs_info:*' formats "%F{cyan}Branch: %b%f%F{208}%u%f%F{magenta}%c%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
+zstyle ':vcs_info:*' nvcsformats "%F{cyan}Not a Git Repo%f"
 precmd () { vcs_info }
 
-PROMPT='
-%F{cyan}Branch: $vcs_info_msg_0_%f
+PROMPT='%F{cyan}$vcs_info_msg_0_%f
 %F{red}Dir:%~%f
 %F{yellow}$%f '
 
