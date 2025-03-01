@@ -61,7 +61,6 @@ meta() {
 }
 
 pull-request() {
-  <!-- test -->
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   gh pr create -a kupuma-ru21 -t "$branch" -b ""
 }
