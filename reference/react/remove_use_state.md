@@ -1,4 +1,4 @@
-```:js
+```ts
 import {useRef} from "react";
 
 export const Component: React.FC = () => {
