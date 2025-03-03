@@ -32,4 +32,6 @@ git config --global core.editor code && git config --global -e
     get-default-branch = "!sh -c 'git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\"' -"
     db = "!default_branch=$(git get-default-branch); protected_branches=$(git branch --format \"%(refname:short)\" --no-merged origin/$default_branch | tr \"\\n\" \"|\"); protected_branches=${protected_branches%|}; if [[ -z \"$protected_branches\" ]]; then git branch | grep -v \"^\\*\" | xargs git branch -D; else git branch | grep -vE \"(^\\*|$default_branch|$protected_branches)\" | xargs git branch -D; fi"
     db1 = !sh -c 'git branch -D $1 && git push origin --delete $1 --no-verify' -
+    get-pushed-branches-with-diff-remote = "!git branch --format=\"%(refname:short)\" | while read branch; do if [ -n \"$(git log origin/$branch..$branch --oneline 2>/dev/null)\" ]; then echo $branch; fi; done"
+	unpushed-new = "!git branch --format=\"%(refname:short)\" | while read branch; do if [ -z \"$(git ls-remote --heads origin $branch)\" ] && [ -n \"$(git log --oneline $branch)\" ]; then echo $branch; fi; done"
 ```
