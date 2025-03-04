@@ -62,7 +62,13 @@ meta() {
 
 pull-request() {
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  gh pr create -a kupuma-ru21 -t "$branch" -b ""
+  pr_url=$(gh pr create -a kupuma-ru21 -t "$branch" -b "" --json url -q ".url")
+  if [[ -z "$pr_url" ]]; then
+    echo "Failed to create PR"
+    return 1
+  fi
+  echo "PR created: $pr_url"
+  gh pr merge "$pr_url" --squash --delete-branch
 }
 
 ```
