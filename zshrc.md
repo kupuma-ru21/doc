@@ -61,8 +61,14 @@ meta() {
 }
 
 pull-request() {
-  local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  gh pr create -a kupuma-ru21 -t "$branch" -b ""
+  pr_url=$(gh pr create -a kupuma-ru21 -t "$branch" -b "")
+  gh pr view "$pr_url" --json state -q ".state"
+  # Wait and retry merging (modify sleep time as needed)
+  while [[ "$(gh pr view "$pr_url" --json state -q '.state')" != "MERGEABLE" ]]; do
+    echo "Waiting for PR to be mergeable..."
+    sleep 10
+  done
+  gh pr merge "$pr_url" --auto --squash
 }
 
 ```
