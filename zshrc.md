@@ -66,5 +66,3 @@ pull-request() {
 }
 
 ```
-
-- run `source ~/.zshrc`
