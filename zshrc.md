@@ -62,6 +62,7 @@ meta() {
 
 pull-request() {
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  g sh
   gh pr create -a kupuma-ru21 -t "$branch" -b ""
   gh pr merge $(get_git_pr_url) --squash --delete-branch
 }
