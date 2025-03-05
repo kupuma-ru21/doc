@@ -65,8 +65,7 @@ pull-request() {
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   gh pr create -a kupuma-ru21 -t "$branch" -b ""
   gh pr merge $(get_git_pr_url) --squash --delete-branch
-  local issue_number=echo ${branch##*-}
-  gh issue close "$issue_number"
+  gh issue close ${branch##*-}
 }
 
 ```
