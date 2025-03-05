@@ -1,30 +1,44 @@
 ```ts
 import {useEffect, useRef, useState} from "react";
+import {useMutation} from "@apollo/client/react/hooks";
+import {getContext} from "@app/utils/graphql";
+import {
+  CreateLikeEpisodeCommentDocument,
+  DeleteLikeEpisodeCommentDocument,
+} from "@gql/graphql";
 
-// isLiked is data from the server
-type Props = {isLiked: boolean};
+type Props = {isLiked: boolean; commentId: string; token: string};
 
-export const LikeButton: React.FC<Props> = ({isLiked}) => {
+export const LikeButton: React.FC<Props> = ({isLiked, commentId, token}) => {
+  const [createLikeEpisodeComment] = useMutation(
+    CreateLikeEpisodeCommentDocument,
+    {context: getContext(token), variables: {episodeCommentId: commentId}}
+  );
+  const [deleteLikeEpisodeComment] = useMutation(
+    DeleteLikeEpisodeCommentDocument,
+    {context: getContext(token), variables: {episodeCommentId: commentId}}
+  );
+
   const [isLikedOptimistic, setIsLikedOptimistic] = useState(isLiked);
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
+  const isOptimisticLikedRef = useRef(isLiked);
   const addLike = () => {
-    // NOTE: Optimistic UI
     setIsLikedOptimistic(prev => !prev);
-    // NOTE: Debounce to only send the request when the user stops clicking
     if (debounceTimeout.current) {
       clearTimeout(debounceTimeout.current);
     }
     debounceTimeout.current = setTimeout(() => {
-      if (isLiked === isLikedOptimistic) {
-        fetch("/endpoint", {
-          method: "POST",
-          body: JSON.stringify({
-            // Something
-          }),
-        });
+      if (isOptimisticLikedRef.current !== isLikedOptimistic) return;
+      if (isLikedOptimistic) {
+        deleteLikeEpisodeComment();
+        isOptimisticLikedRef.current = false;
+      } else {
+        createLikeEpisodeComment();
+        isOptimisticLikedRef.current = true;
       }
     }, 500);
   };
+
   useEffect(() => {
     return () => {
       if (debounceTimeout.current) {
@@ -33,6 +47,7 @@ export const LikeButton: React.FC<Props> = ({isLiked}) => {
     };
   }, []);
 
-  return <button onClick={addLike}></button>;
+  return <button onClick={addLike}>like</button>;
 };
+
 ```
