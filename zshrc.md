@@ -67,7 +67,7 @@ pull-request() {
   gh pr merge $(get_git_pr_url) --squash
   gh issue close ${branch##*-}
   g ch main
-  g db $(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  g db $(branch)
 }
 
 ```
