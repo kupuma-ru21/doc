@@ -1,0 +1,53 @@
+name: Backend
+
+on:
+  workflow_run:
+    workflows: [Detect Frontend & Backend Changes]
+    types:
+      - completed
+
+jobs:
+  use-data:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      pull-requests: write
+      contents: write
+      repository-projects: write
+
+    steps:
+      - name: Get workflow artifacts
+        run: |
+          ARTIFACTS=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                          -H "Accept: application/vnd.github.v3+json" \
+                          "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/artifacts")
+
+          DOWNLOAD_URL=$(echo "$ARTIFACTS" | jq -r '.artifacts[] | select(.name=="backend_flag") | .archive_download_url')
+
+          if [[ -z "$DOWNLOAD_URL" || "$DOWNLOAD_URL" == "null" ]]; then
+            echo "Artifact 'backend_flag' not found"
+            exit 1
+          fi
+
+          curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -L "$DOWNLOAD_URL" -o backend_flag.zip
+          unzip backend_flag.zip
+
+      - name: Read backend flag
+        run: |
+          BACKEND_ONLY=$(cat backend_flag.txt)
+          echo "backend_only=$BACKEND_ONLY" >> $GITHUB_ENV
+          echo "Backend-only flag: $BACKEND_ONLY"
+
+      - name: Debug backend_only value
+        run: |
+          echo "✅ DEBUG: backend_only='$backend_only'"
+          echo "✅ DEBUG: env.backend_only='${{ env.backend_only }}'"
+
+
+      - name: Enable auto-merge if backend-only
+        if: env.backend_only == 'true'
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          pull-request-number: ${{ github.event.workflow_run.pull_requests[0].number }}
+          merge-method: squash
+          token: ${{ secrets.GITHUB_TOKEN }}

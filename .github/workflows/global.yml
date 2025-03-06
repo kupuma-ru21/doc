@@ -1,0 +1,58 @@
+name: Detect Frontend & Backend Changes
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check_changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Ensure we have the previous commit for comparison
+
+      - name: Get changed files
+        id: check_files
+        run: |
+          # Get the list of changed files
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+
+          # Check if frontend/ has changed
+          FRONTEND_CHANGED=$(echo "$CHANGED_FILES" | grep -E '^frontend/' || echo "")
+
+          # Check if backend/ has changed
+          BACKEND_CHANGED=$(echo "$CHANGED_FILES" | grep -E '^backend/' || echo "")
+
+          # Convert to boolean
+          [ -n "$FRONTEND_CHANGED" ] && FRONTEND_CHANGED=true || FRONTEND_CHANGED=false
+          [ -n "$BACKEND_CHANGED" ] && BACKEND_CHANGED=true || BACKEND_CHANGED=false
+
+          echo "Frontend changed: $FRONTEND_CHANGED"
+          echo "Backend changed: $BACKEND_CHANGED"
+
+          echo "frontend_changed=$FRONTEND_CHANGED" >> $GITHUB_ENV
+          echo "backend_changed=$BACKEND_CHANGED" >> $GITHUB_ENV
+
+      - name: Fail if both frontend and backend were changed
+        run: |
+          if [ "$frontend_changed" = "true" ] && [ "$backend_changed" = "true" ]; then
+            echo "❌ Frontend and Backend were both changed. PR cannot be merged!!"
+            exit 1
+          else
+            echo "✅ Only one of frontend or backend was changed. Proceeding."
+          fi
+
+      - name: Save backend-only flag
+        if: env.backend_changed == 'true' && env.frontend_changed == 'false'
+        run: |
+          echo "true" > backend_flag.txt
+
+      - name: Upload backend flag
+        if: env.backend_changed == 'true' && env.frontend_changed == 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend_flag
+          path: backend_flag.txt
