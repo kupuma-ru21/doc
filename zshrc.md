@@ -48,11 +48,13 @@ get_git_pr_url() {
 
 meta() {
   PR_URLS_WITH_CONFLICT=$(gh pr list --author @me --base main --state open --json url,mergeable -q '.[] | select(.mergeable=="CONFLICTING") | .url')
+  local SEPARATOR="---------------------------------------------------------------------------------------"
   if [ -n "$PR_URLS_WITH_CONFLICT" ]; then
   local RED="\033[1;31m"
   echo "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥"
   echo -e "${RED}⚠️  Conflicting PRs found:"
-  echo "$PR_URLS_WITH_CONFLICT" | sed 's/^/👉 /'
+  echo -e "${RED}${SEPARATOR}"
+  echo "$PR_URLS_WITH_CONFLICT" | awk -v sep="$SEPARATOR" '{print "👉 " $0 "\n" sep}'
   echo "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥"
   else
   local repo_url=$(get_git_repo_url)
@@ -63,9 +65,17 @@ meta() {
   local MAGENTA="\033[0;35m"
   local GREEN="\033[0;32m"
 
+  echo -e "${BLUE}${SEPARATOR}"
   echo -e "${BLUE}Repo: ${repo_url:-Not Found}"
+  echo -e "${BLUE}${SEPARATOR}"
+
+  echo -e "${MAGENTA}${SEPARATOR}"
   echo -e "${MAGENTA}MyPRs: ${my_prs_url:-Not Found}"
+  echo -e "${MAGENTA}${SEPARATOR}"
+
+  echo -e "${GREEN}${SEPARATOR}"
   echo -e "${GREEN}PR: ${pr_url:-Not Found}"
+  echo -e "${GREEN}${SEPARATOR}"
   fi
 }
 
