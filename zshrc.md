@@ -22,7 +22,7 @@ zstyle ':vcs_info:*' nvcsformats "%F{cyan}Not a Git Repo%f"
 precmd () { vcs_info }
 
 PROMPT='%F{cyan}$vcs_info_msg_0_%f
-%F{red}Dir:%~%f
+%F{gray}Dir: %~%f
 %F{yellow}$%f '
 
 get_git_repo_url() {
