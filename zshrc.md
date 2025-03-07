@@ -48,7 +48,7 @@ get_git_pr_url() {
 
 meta() {
   PR_URLS_WITH_CONFLICT=$(gh pr list --author @me --base main --state open --json url,mergeable -q '.[] | select(.mergeable=="CONFLICTING") | .url')
-  local SEPARATOR="---------------------------------------------------------------------------------------"
+  local SEPARATOR="-----"
   if [ -n "$PR_URLS_WITH_CONFLICT" ]; then
   local RED="\033[1;31m"
   echo "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥"
