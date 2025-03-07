@@ -13,17 +13,24 @@ alias e='code .'
 # https://bottoms-programming.com/archives/termina-git-branch-name-zsh.html#toc1
 autoload -Uz vcs_info
 setopt prompt_subst
+
+YELLOW="%F{yellow}"
+ORANGE="%F{214}"
+CYAN="%F{cyan}"
+MAGENTA="%F{magenta}"
+RESET="%f"
+
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr " [staged]"
 zstyle ':vcs_info:git:*' unstagedstr " [changed]"
-zstyle ':vcs_info:*' formats "%F{190}Branch: %b%f%F{208}%u%f%F{magenta}%c%f"
+zstyle ':vcs_info:*' formats "${YELLOW}Branch: %b${RESET}%F{208}%u${RESET}${MAGENTA}%c${RESET}"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
-zstyle ':vcs_info:*' nvcsformats "%F{190}Not a Git Repo%f"
+zstyle ':vcs_info:*' nvcsformats "${YELLOW}Not a Git Repo${RESET}"
 precmd () { vcs_info }
 
-PROMPT='%F{190}$vcs_info_msg_0_%f
-%F{cyan}Dir: %~%f
-%F{yellow}$%f '
+PROMPT='%F${YELLOW}$vcs_info_msg_0_%f
+%F${CYAN}Dir: %~%f
+%F${ORANGE}$%f '
 
 get_git_repo_url() {
   local repo_url=$(git remote get-url origin 2>/dev/null | sed -e 's/git@github.com:/https:\/\/github.com\//' -e 's/\.git$//')
