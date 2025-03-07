@@ -47,6 +47,14 @@ get_git_pr_url() {
 }
 
 meta() {
+  PR_URLS_WITH_CONFLICT=$(gh pr list --author @me --base main --state open --json url,mergeable -q '.[] | select(.mergeable=="CONFLICTING") | .url')
+  if [ -n "$PR_URLS_WITH_CONFLICT" ]; then
+  local RED="\033[1;31m"
+  echo "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥"
+  echo -e "${RED}⚠️  Conflicting PRs found:"
+  echo "$PR_URLS_WITH_CONFLICT" | sed 's/^/👉 /'
+  echo "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥"
+  else
   local repo_url=$(get_git_repo_url)
   local my_prs_url=$(get_git_my_prs_url)
   local pr_url=$(get_git_pr_url)
@@ -58,6 +66,7 @@ meta() {
   echo -e "${BLUE}Repo: ${repo_url:-Not Found}"
   echo -e "${MAGENTA}MyPRs: ${my_prs_url:-Not Found}"
   echo -e "${GREEN}PR: ${pr_url:-Not Found}"
+  fi
 }
 
 pull-request() {
