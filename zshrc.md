@@ -69,4 +69,13 @@ pull-request() {
   g ch main
 }
 
+delete-branches-merged-squash() {
+  main_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  for branch in $(git branch --format='%(refname:short)' | grep -v "^$main_branch$"); do
+  if git cherry -v "$main_branch" "$branch" | grep -qE "^- [0-9a-f]"; then
+  git branch -d "$branch"
+  fi
+  done
+}
+
 ```
