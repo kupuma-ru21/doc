@@ -16,13 +16,13 @@ setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr " [staged]"
 zstyle ':vcs_info:git:*' unstagedstr " [changed]"
-zstyle ':vcs_info:*' formats "%F{cyan}Branch: %b%f%F{208}%u%f%F{magenta}%c%f"
+zstyle ':vcs_info:*' formats "%F{190}Branch: %b%f%F{208}%u%f%F{magenta}%c%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
-zstyle ':vcs_info:*' nvcsformats "%F{cyan}Not a Git Repo%f"
+zstyle ':vcs_info:*' nvcsformats "%F{190}Not a Git Repo%f"
 precmd () { vcs_info }
 
-PROMPT='%F{cyan}$vcs_info_msg_0_%f
-%F{gray}Dir: %~%f
+PROMPT='%F{190}$vcs_info_msg_0_%f
+%F{cyan}Dir: %~%f
 %F{yellow}$%f '
 
 get_git_repo_url() {
