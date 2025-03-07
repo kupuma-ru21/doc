@@ -15,7 +15,7 @@
     "editor.defaultFormatter": "golang.go",
     "editor.formatOnSave": true
   },
-  "gopls": { "ui.diagnostic.staticcheck": true },
+  "gopls": {"ui.diagnostic.staticcheck": true},
   "go.showWelcome": false,
   "go.toolsManagement.autoUpdate": true,
   // Javascript
@@ -39,7 +39,7 @@
     "editor.formatOnSave": true
   },
   // Markdown
-  "[markdown]": { "editor.formatOnSave": false }, // REF: https://jsnotice.com/posts/2021-05-27/
+  "[markdown]": {"editor.formatOnSave": false}, // REF: https://jsnotice.com/posts/2021-05-27/
   // HTML
   "html.autoClosingTags": true, // REF: https://stackoverflow.com/questions/49391798/vs-code-turn-off-auto-close-tags-but-leave-on-autocomplete#:~:text=Go%20to%20File%20%3E%20Preferences%20%3E%20Settings,make%20it%20autocomplete%20for%20you
   // Terminal
@@ -79,5 +79,7 @@
   "workbench.activityBar.location": "hidden",
   // Explorer
   "explorer.confirmDelete": false,
-  "explorer.compactFolders": false
+  "explorer.compactFolders": false,
+  // Prettier
+  "prettier.bracketSpacing": false
 }
