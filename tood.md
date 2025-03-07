@@ -2,3 +2,4 @@
 - I wanna delete local branch which is already merged
 - Git branch visualize(https://snyk.io/blog/10-git-aliases-for-faster-and-productive-git-workflow/) > List all branches
 - useReducer and useContext are really suitable for compound components
+- Sometimes I miss where I'm in vscode
