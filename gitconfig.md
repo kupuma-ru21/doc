@@ -19,7 +19,7 @@ git config --global core.editor code && git config --global -e
     rc = !git reset --soft HEAD^
     rs = !git stash pop
     st = !git stash --include-untracked
-    cb = !git checkout -b
+    cb = !sh -c 'g ll && !git checkout -b' -
     db = !sh -c 'git branch -D $1 && git push origin --delete $1 --no-verify' -
     wipe = !sh -c 'git restore . && git clean -fd' -
     rb = !git branch -m
