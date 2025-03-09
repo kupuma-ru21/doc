@@ -93,7 +93,6 @@ meta() {
     done &
   ) 1>/dev/null 2>&1
   fi
-  fi
 }
 
 pull-request() {
