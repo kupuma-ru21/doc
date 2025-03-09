@@ -64,6 +64,7 @@ meta() {
   echo "$PR_URLS_WITH_CONFLICT" | awk -v sep="$SEPARATOR" '{print "👉 " $0 "\n" sep}'
   echo "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥"
   else
+
   local repo_url=$(get_git_repo_url)
   local my_prs_url=$(get_git_my_prs_url)
   local pr_url=$(get_git_pr_url)
@@ -83,6 +84,13 @@ meta() {
   echo -e "${GREEN}${SEPARATOR}"
   echo -e "${GREEN}PR: ${pr_url:-Not Found}"
   echo -e "${GREEN}${SEPARATOR}"
+
+  (
+    while true; do
+    delete-branches-merged-squash
+    sleep 10
+    done
+  ) 1>/dev/null 2>&1
   fi
 }
 
