@@ -88,8 +88,8 @@ meta() {
   (
     while true; do
     delete-branches-merged-squash
-    sleep 10
-    done
+    sleep 600
+    done &
   ) 1>/dev/null 2>&1
   fi
 }
