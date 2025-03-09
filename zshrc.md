@@ -101,7 +101,7 @@ delete-branches-merged-squash() {
     deleted=false
     for branch in $(git branch --format='%(refname:short)' | grep -v "^$main_branch$"); do
       if git cherry -v "$main_branch" "$branch" | grep -qE "^- [0-9a-f]"; then
-        g db "$branch"
+        g db "$branch" 1>/dev/null 2>&1
         deleted=true
       fi
     done
