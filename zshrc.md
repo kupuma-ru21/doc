@@ -85,12 +85,14 @@ meta() {
   echo -e "${GREEN}PR: ${pr_url:-Not Found}"
   echo -e "${GREEN}${SEPARATOR}"
 
+  pkill -f delete-branches-merged-squash
   (
     while true; do
     delete-branches-merged-squash
-    sleep 600
+    sleep 10
     done &
   ) 1>/dev/null 2>&1
+  fi
   fi
 }
 
