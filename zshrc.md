@@ -104,7 +104,7 @@ pull-request() {
   gh pr create -a @me -t "$branch" -b ""
   gh pr merge $(get_git_pr_url) --squash
   gh issue close ${branch##*-}
-  # g ch main
+  g ch main
 }
 
 delete-branches-merged-squash() {
@@ -122,5 +122,4 @@ delete-branches-merged-squash() {
     fi
   done
 }
-
 ```
