@@ -12,7 +12,7 @@ git config --global core.editor code && git config --global -e
     get-current-branch = !git rev-parse --abbrev-ref HEAD
     ll = !git pull
     sh = "!git push --set-upstream origin \"$(git get-current-branch)\""
-    ch = !sh -c '(git switch $1 || (git fetch origin $1 1>/dev/null 2>&1 && git switch $1)) && git ll 1>/dev/null 2>&1' -
+    ch = !sh -c '(git switch $1 1>/dev/null 2>&1 || (git fetch origin $1 1>/dev/null 2>&1 && git switch $1)) && git ll 1>/dev/null 2>&1' -
     a = !git add --all
     c = !sh -c 'git a && git commit -m \"$*\"' -
     cf = !sh -c 'git a && git commit -m \"chore: wip\"' -
