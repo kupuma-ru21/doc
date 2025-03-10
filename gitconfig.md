@@ -19,7 +19,7 @@ git config --global core.editor code && git config --global -e
     rc = !git reset --soft HEAD^
     rs = !git stash pop
     st = !git stash --include-untracked
-    cb = !sh -c '(git fetch origin \"$(git get-current-branch)\" 1>/dev/null 2>&1 || git switch -c $1) && git ll 1>/dev/null 2>&1 && git switch -c $1' -
+    cb = !sh -c 'git ll 1>/dev/null 2>&1 && git switch -c $1' -
     db = !sh -c 'git branch -D $1 && git push origin --delete $1 --no-verify 1>/dev/null 2>&1' -
     wipe = !sh -c 'git restore . && git clean -fd' -
     rb = !git branch -m
