@@ -54,6 +54,9 @@ get_git_pr_url() {
 }
 
 meta() {
+  main_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  g ch "$main_branch"
+
   PR_URLS_WITH_CONFLICT=$(gh pr list --author @me --base main --state open --json url,mergeable -q '.[] | select(.mergeable=="CONFLICTING") | .url')
   local SEPARATOR="-----"
   if [ -n "$PR_URLS_WITH_CONFLICT" ]; then
@@ -92,7 +95,6 @@ meta() {
     sleep 10
     done &
   ) 1>/dev/null 2>&1
-  fi
   fi
 }
 
