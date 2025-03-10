@@ -122,4 +122,5 @@ delete-branches-merged-squash() {
     fi
   done
 }
+
 ```
