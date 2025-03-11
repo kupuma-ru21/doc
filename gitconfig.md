@@ -7,26 +7,19 @@ git config --global core.editor code && git config --global -e
 ```
 
 ```
-[user]
-	name = kupuma-ru21
-	email = tech.kupumaru@gmail.com
-[core]
-	editor = code
-	ignorecase = false
 [alias]
-    # NOTE: "1>/dev/null 2>&1" is used to suppress the output of the command
     get-current-branch = !git rev-parse --abbrev-ref HEAD
     ll = !git pull
     sh = "!git push --set-upstream origin \"$(git get-current-branch)\""
-    ch = !sh -c '((git switch $1 1>/dev/null 2>&1 || git switch $1) || (git fetch origin $1 1>/dev/null 2>&1 && git switch $1)) && git ll 1>/dev/null 2>&1' -
+    ch = !sh -c '(git switch $1 || (git fetch origin $1 && git switch $1)) && git ll' -
     a = !git add --all
     c = !sh -c 'git a && git commit -m \"$*\"' -
     cf = !sh -c 'git a && git commit -m \"chore: wip\"' -
     rc = !git reset --soft HEAD^
     rs = !git stash pop
     st = !git stash --include-untracked
-    cb = !sh -c 'git ll 1>/dev/null 2>&1 && (git switch -c $1 1>/dev/null 2>&1 || git switch -c $1)' -
-    db = !sh -c '(git branch -D $1 1>/dev/null 2>&1 || git branch -D $1) && git push origin --delete $1 --no-verify 1>/dev/null 2>&1' -
+    cb = !sh -c 'git ll && git switch -c $1' -
+    db = !sh -c '(git branch -D $1 || git push origin --delete $1 --no-verify) && git push origin --delete $1 --no-verify' -
     wipe = !sh -c 'git restore . && git clean -fd' -
     rb = !git branch -m
     rmc = !git reset --hard HEAD~1
