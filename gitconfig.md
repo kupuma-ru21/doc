@@ -7,6 +7,12 @@ git config --global core.editor code && git config --global -e
 ```
 
 ```
+[user]
+	name = kupuma-ru21
+	email = tech.kupumaru@gmail.com
+[core]
+	editor = code
+	ignorecase = false
 [alias]
     # NOTE: "1>/dev/null 2>&1" is used to suppress the output of the command
     get-current-branch = !git rev-parse --abbrev-ref HEAD
