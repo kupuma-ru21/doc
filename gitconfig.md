@@ -24,5 +24,5 @@ git config --global core.editor code && git config --global -e
     rb = !git branch -m
     rmc = !git reset --hard HEAD~1
     # https://snyk.io/blog/10-git-aliases-for-faster-and-productive-git-workflow/
-    b = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+    b = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset): %(color:red)(%(committerdate:relative)) %(color:green)[%(authorname)]' --sort=-committerdate
 ```

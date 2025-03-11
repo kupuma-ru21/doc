@@ -126,14 +126,14 @@ delete-branches-merged-squash() {
 git() {
   case "$1" in
     ch|cb)
-      output=$(command git "$@" 2>&1)  # Git コマンドの出力をキャプチャ
-      first_fatal=$(echo "$output" | grep -i "fatal:" | head -n 1)  # 最初の `fatal:` を取得
+      output=$(command git "$@" 2>&1
+      first_fatal=$(echo "$output" | grep -i "fatal:" | head -n 1)
       if [[ -n "$first_fatal" ]]; then
         echo "$first_fatal" | sed $'s/.*/\e[1;37;41m[ ERROR ]\e[41;97m & \e[m/'
       fi
       ;;
     db)
-      command git "$@" 1>/dev/null 2>&1  # `git db` は完全に非表示
+      command git "$@" 1>/dev/null 2>&1
       ;;
     *)
       command git "$@"
