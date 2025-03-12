@@ -165,8 +165,14 @@ create-new-branch() {
 
 git() {
   case "$1" in
-    ch|revert|sh)
+    ch|revert)
       output=$(command git "$@" --no-edit 2>&1)
+      if echo "$output" | grep -i -q -E "fatal:|error:"; then
+        print_error "$output"
+      fi
+      ;;
+    sh)
+      output=$(command git "$@" 2>&1)
       if echo "$output" | grep -i -q -E "fatal:|error:"; then
         print_error "$output"
       fi
