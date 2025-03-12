@@ -1,6 +1,1 @@
-- I wanna see my pr which conflict
-- I wanna treat shell script as git command
-- I wanna delete local branch which is already merged
-- useReducer and useContext are really suitable for compound components
-- Sometimes I miss where I'm in vscode
-
+- When I click cmd + t in explorer in vscode, I wanna move to editor1 and open a new tab
