@@ -18,11 +18,11 @@ git config --global core.editor code && git config --global -e
     rc = !git reset --soft HEAD^
     rs = !git stash pop
     st = !git stash --include-untracked
-    cb = !sh -c 'git ll && git switch -c $1' -
+	cb = !zsh -i -c \"create-new-branch \\\"$1\\\"\"
     db = !sh -c '(git branch -D $1 || git push origin --delete $1 --no-verify) && git push origin --delete $1 --no-verify' -
     wipe = !sh -c 'git restore . && git clean -fd' -
     rb = !git branch -m
     rmc = !git reset --hard HEAD~1
     # https://snyk.io/blog/10-git-aliases-for-faster-and-productive-git-workflow/
-    b = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+    b = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset): %(color:red)(%(committerdate:relative)) %(color:green)[%(authorname)]' --sort=-committerdate
 ```

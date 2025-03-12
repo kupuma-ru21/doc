@@ -77,8 +77,7 @@ meta() {
 
 
 show-git-progress() {
-  main_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
-  git fetch origin "$main_branch" 1>/dev/null 2>&1
+  git fetch origin "$(get_default_branch)" 1>/dev/null 2>&1
 
   PR_URLS_WITH_CONFLICT=$(gh pr list --author @me --base main --state open --json url,mergeable -q '.[] | select(.mergeable=="CONFLICTING") | .url')
   local SEPARATOR="-----"
@@ -115,7 +114,7 @@ show-git-progress() {
 
 
 delete-branches-merged-squash() {
-  main_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  main_branch=$(get_default_branch)
   while true; do
     deleted=false
     for branch in $(git branch --format='%(refname:short)' | grep -v "^$main_branch$"); do
@@ -139,13 +138,38 @@ pull-request() {
   g ch main
 }
 
+create-new-branch() {
+    default_branch=$(get_default_branch)
+    current_branch=$(g get-current-branch)
+
+    if [ "$current_branch" != "$default_branch" ]; then
+        print_warning "Sure? Making a new branch from branch: ($current_branch)"
+        echo -n "Continue? (y/N): "
+        read confirm
+        if [ "$confirm" != "y" ]; then
+            g ch "$default_branch" && g cb "$1"
+            return 1
+        fi
+    fi
+
+    git pull --rebase >/dev/null 2>&1 || true
+
+    output=$(git switch -c "$1" 2>&1)
+    first_fatal=$(echo "$output" | grep -i "fatal:" | head -n 1)
+
+    if [[ -n "$first_fatal" ]]; then
+        print_error "$first_fatal"
+    fi
+}
+
+
 git() {
   case "$1" in
-    ch|cb)
+    ch)
       output=$(command git "$@" 2>&1)
       first_fatal=$(echo "$output" | grep -i "fatal:" | head -n 1)
       if [[ -n "$first_fatal" ]]; then
-        echo "$first_fatal" | sed $'s/.*/\e[1;37;41m[ ERROR ]\e[41;97m & \e[m/'
+        print_error "$first_fatal"
       fi
       ;;
     db)
@@ -155,5 +179,19 @@ git() {
       command git "$@"
       ;;
   esac
+}
+
+print_error() {
+    local message="$1"
+    echo "$message" | sed $'s/.*/\e[1;37;41m[ ERROR ]\e[41;97m & \e[m/'
+}
+
+print_warning() {
+    local message="$1"
+    echo -e "\033[1;97;103m[ WARNING ] $message \033[0m"
+}
+
+get_default_branch() {
+  git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"
 }
 ```
