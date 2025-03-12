@@ -54,6 +54,7 @@ get_git_pr_url() {
 }
 
 meta() {
+  pkill -f show-git-progress
   while true; do
     c
     show-git-progress
