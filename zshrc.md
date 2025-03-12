@@ -162,20 +162,13 @@ create-new-branch() {
     fi
 }
 
-
 git() {
   case "$1" in
     ch|revert)
-      output=$(command git "$@" --no-edit 2>&1)
-      if echo "$output" | grep -i -q -E "fatal:|error:"; then
-        print_error "$output"
-      fi
+      handle_git_command "true" "$@"
       ;;
     sh)
-      output=$(command git "$@" 2>&1)
-      if echo "$output" | grep -i -q -E "fatal:|error:"; then
-        print_error "$output"
-      fi
+      handle_git_command "false" "$@"
       ;;
     db)
       command git "$@" 1>/dev/null 2>&1
@@ -184,6 +177,19 @@ git() {
       command git "$@"
       ;;
   esac
+}
+
+handle_git_command() {
+    local no_edit_flag="$1"
+    shift
+    if [[ "$no_edit_flag" == "true" ]]; then
+        output=$(command git "$@" --no-edit 2>&1)  # `--no-edit` を適用
+    else
+        output=$(command git "$@" 2>&1)  # `--no-edit` なし
+    fi
+    if echo "$output" | grep -i -q -E "fatal:|error:"; then
+        print_error "$output"
+    fi
 }
 
 print_error() {
