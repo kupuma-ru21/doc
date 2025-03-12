@@ -165,11 +165,10 @@ create-new-branch() {
 
 git() {
   case "$1" in
-    ch)
-      output=$(command git "$@" 2>&1)
-      first_fatal=$(echo "$output" | grep -i "fatal:" | head -n 1)
-      if [[ -n "$first_fatal" ]]; then
-        print_error "$first_fatal"
+    ch|revert)
+      output=$(command git "$@" --no-edit 2>&1)
+      if echo "$output" | grep -i -q -E "fatal:|error:"; then
+        print_error "$output"
       fi
       ;;
     db)
@@ -183,7 +182,7 @@ git() {
 
 print_error() {
     local message="$1"
-    echo "$message" | sed $'s/.*/\e[1;37;41m[ ERROR ]\e[41;97m & \e[m/'
+    echo -e "\033[1;97;41m[ ERROR ] $message\033[0m"
 }
 
 print_warning() {
