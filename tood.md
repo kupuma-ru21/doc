@@ -1,3 +1,2 @@
 - When I click cmd + t in explorer in vscode, I wanna move to editor1 and open a new tab
 - I wanna highlight bottom of dir showed in terminal.
-- conflict122222
