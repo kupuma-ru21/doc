@@ -71,11 +71,6 @@ meta() {
   ) 1>/dev/null 2>&1 &
 }
 
-
-
-
-
-
 show-git-progress() {
   git fetch origin "$(get_default_branch)" 1>/dev/null 2>&1
 
@@ -207,5 +202,4 @@ print_warning() {
 get_default_branch() {
   git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"
 }
-
 ```
