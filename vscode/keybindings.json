@@ -3,7 +3,7 @@
 // do "cmd + shift + p" then input "shortcuts json"
 [
   // move to problems
-  { "key": "alt+1", "command": "workbench.panel.markers.view.focus" },
+  {"key": "alt+1", "command": "workbench.panel.markers.view.focus"},
 
   // fix problems
   {
@@ -18,6 +18,11 @@
     "command": "workbench.action.splitEditorRight",
     "when": "editorTextFocus"
   },
+  {
+    "key": "cmd+t",
+    "command": "workbench.action.splitEditorRight",
+    "when": "listFocus"
+  },
 
   // split terminal right
   {
@@ -27,7 +32,7 @@
   },
 
   // move to terminal from editor
-  { "key": "alt+2", "command": "workbench.action.terminal.focus" },
+  {"key": "alt+2", "command": "workbench.action.terminal.focus"},
 
   // move between terminal
   {
@@ -117,7 +122,7 @@
   {
     "key": "cmd+f",
     "command": "list.find",
-    "when": "listFocus && listSupportsFind"
+    "when": "listFocus"
   },
 
   // move between diffs
