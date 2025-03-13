@@ -1,1 +1,3 @@
 - When I click cmd + t in explorer in vscode, I wanna move to editor1 and open a new tab
+- When I do "git pull origin default branch", I see a file. I don't wanna see it when it doesn't fail
+- I wanna see pull requests conflicted order by createAt
