@@ -29,7 +29,7 @@ zstyle ':vcs_info:*' nvcsformats "${YELLOW}Not a Git Repo${RESET}"
 precmd () { vcs_info }
 
 PROMPT='%F${YELLOW}$vcs_info_msg_0_%f
-%F${CYAN}Dir: %~%f
+%F${CYAN}Path: %F${CYAN}$(echo "$PWD" | sed -E "s|^$VSCODE_WORKSPACE|root|")%f
 %F${ORANGE}$%f '
 
 get_git_repo_url() {
