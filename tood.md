@@ -8,4 +8,4 @@ CONFLICT (content): Merge conflict in admin/app/routes/comics/route.tsx
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 - I wanna highlight bottom of dir showed in terminal.
-- conflict2
+- conflict1
