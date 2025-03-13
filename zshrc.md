@@ -79,7 +79,9 @@ meta() {
 show-git-progress() {
   git fetch origin "$(get_default_branch)" 1>/dev/null 2>&1
 
-  PR_URLS_WITH_CONFLICT=$(gh pr list --author @me --base main --state open --json url,mergeable -q '.[] | select(.mergeable=="CONFLICTING") | .url')
+  PR_URLS_WITH_CONFLICT=$(gh pr list --author @me --base main --state open --json url,mergeable,createdAt \
+  -q 'sort_by(.createdAt) | .[] | select(.mergeable=="CONFLICTING") | .url'
+)
   local SEPARATOR="-----"
 
   if [ -n "$PR_URLS_WITH_CONFLICT" ]; then
@@ -205,4 +207,5 @@ print_warning() {
 get_default_branch() {
   git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"
 }
+
 ```
