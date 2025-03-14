@@ -115,7 +115,7 @@ delete-branches-merged() {
   for pr_commit_hash in "${pr_commit_hashes[@]}"; do
   for local_commit_hash in "${local_commit_hashes[@]}"; do
   if [[ "$pr_commit_hash" == "$local_commit_hash" ]]; then
-  git branch -d $(git branch --contains "$local_commit_hash")
+  git delete-branch-both-local-remote $(git branch --contains "$local_commit_hash")
   fi
   done
   done
