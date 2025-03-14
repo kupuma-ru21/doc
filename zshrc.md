@@ -152,7 +152,11 @@ create-new-branch() {
     if [ "$current_branch" != "$default_branch" ]; then
         print_warning "Sure? Making a new branch from branch: ($current_branch)"
         echo -n "Continue? (y/N): "
-        read confirm
+        old_stty_cfg=$(stty -g)
+        stty -icanon -echo
+        confirm=$(dd bs=1 count=1 2>/dev/null)
+        stty "$old_stty_cfg"
+        echo "$confirm"
         if [ "$confirm" != "y" ]; then
             g ch "$default_branch" && g cb "$1"
             return 1
