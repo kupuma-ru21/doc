@@ -1,3 +1,3 @@
 - When a file is save automatically, I want linter to run in vscode.
 - g cb ask "Sure? something", I don't wanna enter after y or n
-- conflict6666666
+- I don't wanna see log after g reset
