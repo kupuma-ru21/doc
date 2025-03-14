@@ -20,7 +20,7 @@ git config --global core.editor code && git config --global -e
     rs = !git stash pop
     st = !git stash --include-untracked
 	cb = !zsh -i -c \"create-new-branch \\\"$1\\\"\"
-    db = !sh -c '(git branch -D $1 || git push origin --delete $1 --no-verify) && git push origin --delete $1 --no-verify' -
+    db = !sh -c 'git ch main && (git branch -D $1 || git push origin --delete $1 --no-verify) && git push origin --delete $1 --no-verify' -
     wipe = !sh -c 'git restore . && git clean -fd' -
     rb = !git branch -m
     rmc = !git reset --hard HEAD~1

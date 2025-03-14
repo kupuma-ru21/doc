@@ -117,7 +117,7 @@ delete-branches-merged() {
   for branch in "${local_branches[@]}"; do
     if [[ " ${merged_branches[@]} " =~ " ${branch} " ]]; then
       if [[ "$branch" != "$current_branch" ]]; then
-        git db "$branch"
+        git branch -D "$branch"
       fi
     fi
   done
