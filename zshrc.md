@@ -132,7 +132,7 @@ get_hashes_by_first_commits_from_local_branches() {
 }
 
 get_hashes_by_first_commits_from_pr_branches() {
-  gh pr list --state merged --limit 100 --json number --jq '.[].number' | while read PR_NUMBER; do
+  gh pr list --state merged --limit 50 --json number --jq '.[].number' | while read PR_NUMBER; do
     gh pr view "$PR_NUMBER" --json commits --jq '.commits[0].oid'
   done
 }
@@ -149,7 +149,6 @@ pull-request() {
 create-new-branch() {
     default_branch=$(get_default_branch)
     current_branch=$(g get-current-branch)
-
     if [ "$current_branch" != "$default_branch" ]; then
         print_warning "Sure? Making a new branch from branch: ($current_branch)"
         echo -n "Continue? (y/N): "
@@ -159,12 +158,9 @@ create-new-branch() {
             return 1
         fi
     fi
-
-    git pull --rebase >/dev/null 2>&1 || true
-
+    git ll >/dev/null 2>&1 || true
     output=$(git switch -c "$1" 2>&1)
     first_fatal=$(echo "$output" | grep -i "fatal:" | head -n 1)
-
     if [[ -n "$first_fatal" ]]; then
         print_error "$first_fatal"
     fi
