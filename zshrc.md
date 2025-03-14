@@ -111,17 +111,23 @@ show-git-progress() {
 
 
 delete-branches-merged() {
-  merged_branches=($(gh pr list --state merged --limit 500 --json headRefName --jq '.[].headRefName'))
   current_branch=$(git branch --show-current)
   local_branches=($(git branch | sed 's/*//' | awk '{print $1}'))
-  for branch in "${local_branches[@]}"; do
-    if [[ " ${merged_branches[@]} " =~ " ${branch} " ]]; then
-      if [[ "$branch" != "$current_branch" ]]; then
-        git branch -D "$branch"
+  merged_branches=($(gh pr list --state merged --limit 100 --json headRefName,commits --jq '.[] | "\(.headRefName) \(.commits[0].oid)"'))
+  for branch_info in "${merged_branches[@]}"; do
+    branch_name=$(echo "$branch_info" | awk '{print $1}')
+    pr_first_commit=$(echo "$branch_info" | awk '{print $2}')
+    if [[ " ${local_branches[@]} " =~ " ${branch_name} " ]]; then取得
+      local_first_commit=$(git rev-list --reverse "$branch_name" | head -n 1)
+      if [[ "$pr_first_commit" == "$local_first_commit" && "$branch_name" != "$current_branch" ]]; then
+        git branch -D "$branch_name"
+        echo "Deleted branch: $branch_name"
       fi
     fi
   done
 }
+
+
 
 
 pull-request() {
