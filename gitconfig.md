@@ -11,7 +11,7 @@ git config --global core.editor code && git config --global -e
     get-current-branch = !git rev-parse --abbrev-ref HEAD
     ll = !sh -c 'git rebase --no-autostash --no-ff origin/${1:-$(git get-current-branch)}' -
 	fix-conflict = !git add . && GIT_EDITOR=true git rebase --continue
-    sh = "!git push --set-upstream --force-with-lease origin \"$(git get-current-branch)\""
+    sh = "!git push -u --force-with-lease origin \"$(git get-current-branch)\""
     ch = !sh -c '(git switch $1 || (git fetch origin $1 && git switch $1)) && git ll' -
     a = !git add --all
     c = !sh -c 'git a && git commit -m \"$*\"' -
