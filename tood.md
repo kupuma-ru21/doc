@@ -1,2 +1,3 @@
 - When a file is save automatically, I want linter to run in vscode.
 - I don't wanna see log after g reset
+- delete-branches-merged is run once, I wanna run it like loop
