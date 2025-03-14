@@ -66,7 +66,7 @@ meta() {
   (
     while true; do
       delete-branches-merged
-      sleep 600
+      sleep 60
     done
   ) 1>/dev/null 2>&1 &
 }
@@ -168,6 +168,15 @@ create-new-branch() {
         print_error "$first_fatal"
     fi
 }
+
+git-pull() {
+  if [[ -z "$1" ]]; then
+    git pull origin $(g get-current-branch)
+  else
+    git rebase --no-autostash --no-ff origin/"$1"
+  fi
+}
+
 
 git() {
   case "$1" in
