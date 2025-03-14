@@ -179,7 +179,14 @@ create-new-branch() {
 git() {
   case "$1" in
     ch|revert)
-      handle_git_command "true" "$@"
+      output="$(handle_git_command "true" "$@" 2>&1)"
+      ret=$?
+      if echo "$output" | grep -q "fatal: invalid upstream"; then
+        return $ret
+      else
+        echo "$output"
+        return $ret
+      fi
       ;;
     sh)
       handle_git_command "false" "$@"
