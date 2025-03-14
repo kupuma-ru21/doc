@@ -61,11 +61,11 @@ meta() {
     sleep 60
   done &
 
-  pkill -f delete-branches-merged-squash
+  pkill -f delete-branches-merged
 
   (
     while true; do
-      delete-branches-merged-squash
+      delete-branches-merged
       sleep 10
     done
   ) 1>/dev/null 2>&1 &
@@ -75,8 +75,8 @@ show-git-progress() {
   git fetch origin "$(get_default_branch)" 1>/dev/null 2>&1
 
   PR_URLS_WITH_CONFLICT=$(gh pr list --author @me --base main --state open --json url,mergeable,createdAt \
-  -q 'sort_by(.createdAt) | .[] | select(.mergeable=="CONFLICTING") | .url'
-)
+  -q 'sort_by(.createdAt) | .[] | select(.mergeable=="CONFLICTING") | .url')
+
   local SEPARATOR="-----"
 
   if [ -n "$PR_URLS_WITH_CONFLICT" ]; then
@@ -110,21 +110,19 @@ show-git-progress() {
 }
 
 
-delete-branches-merged-squash() {
-  main_branch=$(get_default_branch)
-  while true; do
-    deleted=false
-    for branch in $(git branch --format='%(refname:short)' | grep -v "^$main_branch$"); do
-      if git cherry -v "$main_branch" "$branch" | grep -qE "^- [0-9a-f]"; then
-        g db "$branch" 1>/dev/null 2>&1
-        deleted=true
+delete-branches-merged() {
+  merged_branches=($(gh pr list --state merged --limit 500 --json headRefName --jq '.[].headRefName'))
+  current_branch=$(git branch --show-current)
+  local_branches=($(git branch | sed 's/*//' | awk '{print $1}'))
+  for branch in "${local_branches[@]}"; do
+    if [[ " ${merged_branches[@]} " =~ " ${branch} " ]]; then
+      if [[ "$branch" != "$current_branch" ]]; then
+        git db "$branch"
       fi
-    done
-    if [ "$deleted" = false ]; then
-      break
     fi
   done
 }
+
 
 pull-request() {
   g sh
@@ -202,5 +200,4 @@ print_warning() {
 get_default_branch() {
   git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"
 }
-
 ```
