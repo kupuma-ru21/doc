@@ -66,7 +66,7 @@ meta() {
   (
     while true; do
       delete-branches-merged
-      sleep 10
+      sleep 600
     done
   ) 1>/dev/null 2>&1 &
 }
@@ -109,87 +109,33 @@ show-git-progress() {
   fi
 }
 
-
 delete-branches-merged() {
-  echo "=== Fetching local branches ==="
-  current_branch=$(git branch --show-current)
-  local_branches=($(git branch | sed 's/*//' | awk '{print $1}'))
-  echo "Current branch: $current_branch"
-  echo "Local branches: ${local_branches[*]}"
-
-  echo "=== Fetching merged PRs ==="
-  merged_prs=$(gh pr list --state merged --limit 1 --json headRefName,mergeCommit)
-
-  echo "🔍 Raw PR data from GitHub:"
-  echo "$merged_prs"
-
-  merged_branches=()
-  while IFS=$'\t' read -r branch_name merge_commit; do
-    merged_branches+=("$branch_name $merge_commit")
-  done < <(echo "$merged_prs" | jq -r '.[] | select(.mergeCommit != null) | "\(.headRefName)\t\(.mergeCommit.oid)"')
-
-  echo "Merged PRs (branch name & merge commit):"
-  if [[ ${#merged_branches[@]} -eq 0 ]]; then
-    echo "⚠️ No valid merged PRs found. Exiting."
-    return
+  local_commit_hashes=($(get_hashes_by_first_commits_from_local_branches))
+  pr_commit_hashes=($(get_hashes_by_first_commits_from_pr_branches))
+  for pr_commit_hash in "${pr_commit_hashes[@]}"; do
+  for local_commit_hash in "${local_commit_hashes[@]}"; do
+  if [[ "$pr_commit_hash" == "$local_commit_hash" ]]; then
+  git branch -d $(git branch --contains "$local_commit_hash")
   fi
-
-  for branch_info in "${merged_branches[@]}"; do
-    echo "  $branch_info"
   done
-
-  echo "=== Checking branches for deletion ==="
-  for branch_info in "${merged_branches[@]}"; do
-    branch_name=$(echo "$branch_info" | awk '{print $1}')
-    merge_commit=$(echo "$branch_info" | awk '{print $2}')
-
-    if [[ -z "$merge_commit" || "$merge_commit" == "null" ]]; then
-      echo "  ⚠️ Skipping branch: $branch_name (No merge commit found)"
-      continue
-    fi
-
-    if [[ " ${local_branches[@]} " =~ " ${branch_name} " ]]; then
-      echo "  Checking branch: $branch_name"
-
-      # ローカルブランチの最初のコミットを取得
-      local_first_commit=$(git rev-list --reverse "$branch_name" | head -n 1)
-
-      # スカッシュマージ後の最も古い親コミットを取得
-      pr_first_commit=$(git rev-list "$merge_commit" | tail -n 1 2>/dev/null)
-
-      if [[ -z "$pr_first_commit" ]]; then
-        echo "    ⚠️ Unable to find PR first commit for $branch_name"
-        continue
-      fi
-
-      echo "    PR First Commit:   $pr_first_commit"
-      echo "    Local First Commit: $local_first_commit"
-
-      # 🔹 【新規追加】マージコミットの親コミットを取得
-      merge_commit_parents=$(git rev-list --parents -n 1 "$merge_commit" | cut -d' ' -f2-)
-      echo "    Merge Commit Parents: $merge_commit_parents"
-
-      # 🔹 【新規追加】ローカルブランチの最初のコミットが `mergeCommit` の親に含まれているか確認
-      if [[ ! " $merge_commit_parents " =~ " $local_first_commit " ]]; then
-        echo "    ⚠️ Not deleting: $branch_name is a new branch (different history)"
-        continue
-      fi
-
-      # コミットハッシュが一致する場合、削除
-      if [[ "$pr_first_commit" == "$local_first_commit" && "$branch_name" != "$current_branch" ]]; then
-        echo "    ✅ Deleting branch: $branch_name"
-        git branch -D "$branch_name"
-      else
-        echo "    ❌ Not deleting: Commit hash mismatch or is current branch"
-      fi
-    else
-      echo "  ⚠️ Skipping branch: $branch_name (Not found locally)"
-    fi
   done
-
-  echo "=== Finished ==="
 }
 
+get_hashes_by_first_commits_from_local_branches() {
+  local branches=($(git branch --format='%(refname:short)'))
+  local commit_hashes=()
+  for branch in $branches; do
+    local commit_hash=$(git rev-parse $branch)
+    commit_hashes+=($commit_hash)
+  done
+  echo "${commit_hashes[@]}"
+}
+
+get_hashes_by_first_commits_from_pr_branches() {
+  gh pr list --state merged --limit 100 --json number --jq '.[].number' | while read PR_NUMBER; do
+    gh pr view "$PR_NUMBER" --json commits --jq '.commits[0].oid'
+  done
+}
 
 pull-request() {
   g sh
@@ -266,36 +212,6 @@ print_warning() {
 
 get_default_branch() {
   git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"
-}
-
-get_commit_hashes() {
-  local branches=($(git branch --format='%(refname:short)'))
-  local commit_hashes=()
-
-  for branch in $branches; do
-    local commit_hash=$(git rev-parse $branch)
-    commit_hashes+=($commit_hash)
-  done
-
-  echo "${commit_hashes[@]}"
-}
-
-get_first_commit_of_latest_merged_pr() {
-  gh pr list --state merged --limit 10 --json number --jq '.[].number' | while read PR_NUMBER; do
-    gh pr view "$PR_NUMBER" --json commits --jq '.commits[0].oid'
-  done
-}
-
-compare_commit_hashes() {
-  commit_hashes=($(get_commit_hashes))
-  pr_commit_hashes=($(get_first_commit_of_latest_merged_pr))
-  for pr_commit in "${pr_commit_hashes[@]}"; do
-  for commit in "${commit_hashes[@]}"; do
-  if [[ "$pr_commit" == "$commit" ]]; then
-  git branch -d $(git branch --contains "$commit")
-  fi
-  done
-  done
 }
 ```
 
