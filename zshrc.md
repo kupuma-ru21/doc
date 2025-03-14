@@ -110,31 +110,20 @@ show-git-progress() {
 }
 
 delete-branches-merged() {
-  local_commit_hashes=($(get_hashes_by_first_commits_from_local_branches))
-  pr_commit_hashes=($(get_hashes_by_first_commits_from_pr_branches))
-  for pr_commit_hash in "${pr_commit_hashes[@]}"; do
-  for local_commit_hash in "${local_commit_hashes[@]}"; do
-  if [[ "$pr_commit_hash" == "$local_commit_hash" ]]; then
-  git delete-branch-both-local-remote $(git branch --contains "$local_commit_hash")
-  fi
-  done
+  local_commit_hashes=$(get_hashes_by_first_commits_from_local_branches)
+  pr_commit_hashes=$(get_hashes_by_first_commits_from_pr_branches)
+  common_hashes=$(comm -12 <(echo "$local_commit_hashes" | sort) <(echo "$pr_commit_hashes" | sort))
+  for commit_hash in $common_hashes; do
+    git delete-branch-both-local-remote $(git branch --contains "$commit_hash")
   done
 }
 
 get_hashes_by_first_commits_from_local_branches() {
-  local branches=($(git branch --format='%(refname:short)'))
-  local commit_hashes=()
-  for branch in $branches; do
-    local commit_hash=$(git rev-parse $branch)
-    commit_hashes+=($commit_hash)
-  done
-  echo "${commit_hashes[@]}"
+  git for-each-ref --format='%(objectname)' refs/heads/
 }
 
 get_hashes_by_first_commits_from_pr_branches() {
-  gh pr list --state merged --limit 50 --json number --jq '.[].number' | while read PR_NUMBER; do
-    gh pr view "$PR_NUMBER" --json commits --jq '.commits[0].oid'
-  done
+  gh pr list --state merged --limit 50 --json number --jq '.[].number' | xargs -I{} gh pr view {} --json commits --jq '.commits[0].oid'
 }
 
 pull-request() {
@@ -192,7 +181,7 @@ git() {
       handle_git_command "false" "$@"
       ;;
     db)
-      command git "$@" 1>/dev/null 2>&1
+      command git "$@" >/dev/null 2>&1
       ;;
     *)
       command git "$@"
