@@ -1,0 +1,1 @@
+- When a file is save automatically, I want linter to run in vscode.
