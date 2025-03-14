@@ -110,12 +110,16 @@ show-git-progress() {
 }
 
 delete-branches-merged() {
-  local_commit_hashes=$(get_hashes_by_first_commits_from_local_branches)
-  pr_commit_hashes=$(get_hashes_by_first_commits_from_pr_branches)
-  common_hashes=$(comm -12 <(echo "$local_commit_hashes" | sort) <(echo "$pr_commit_hashes" | sort))
-  for commit_hash in $common_hashes; do
-    git delete-branch-both-local-remote $(git branch --contains "$commit_hash")
-  done
+  local_commit_hashes=$(get_hashes_by_first_commits_from_local_branches | sort | tr -d '\r')
+  pr_commit_hashes=$(get_hashes_by_first_commits_from_pr_branches | sort | tr -d '\r')
+  common_hashes=$(comm -12 <(printf '%s\n' "$local_commit_hashes") <(printf '%s\n' "$pr_commit_hashes"))
+  while read -r commit_hash; do
+    [[ -z "$commit_hash" ]] && continue
+    git branch --contains "$commit_hash" | tr -d '\r' | while read -r branch; do
+      [[ -z "$branch" ]] && continue
+      git delete-branch-both-local-remote "$branch"
+    done
+  done <<< "$common_hashes"
 }
 
 get_hashes_by_first_commits_from_local_branches() {
@@ -123,7 +127,7 @@ get_hashes_by_first_commits_from_local_branches() {
 }
 
 get_hashes_by_first_commits_from_pr_branches() {
-  gh pr list --state merged --limit 50 --json number --jq '.[].number' | xargs -I{} gh pr view {} --json commits --jq '.commits[0].oid'
+  gh pr list --state merged --limit 50 --json number --jq '.[].number' | xargs -n1 -I{} gh pr view {} --json commits --jq '.commits[0].oid' | sort
 }
 
 pull-request() {
@@ -181,7 +185,7 @@ git() {
       handle_git_command "false" "$@"
       ;;
     db)
-      command git "$@" >/dev/null 2>&1
+      command git "$@" 1>/dev/null 2>&1
       ;;
     *)
       command git "$@"
@@ -193,9 +197,9 @@ handle_git_command() {
     local no_edit_flag="$1"
     shift
     if [[ "$no_edit_flag" == "true" ]]; then
-        output=$(command git "$@" --no-edit 2>&1)  # `--no-edit` を適用
+        output=$(command git "$@" --no-edit 2>&1)
     else
-        output=$(command git "$@" 2>&1)  # `--no-edit` なし
+        output=$(command git "$@" 2>&1)
     fi
     if echo "$output" | grep -i -q -E "fatal:|error:"; then
         print_error "$output"
