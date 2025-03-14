@@ -151,16 +151,22 @@ create-new-branch() {
     current_branch=$(g get-current-branch)
     if [ "$current_branch" != "$default_branch" ]; then
         print_warning "Sure? Making a new branch from branch: ($current_branch)"
-        echo -n "Continue? (y/N): "
-        old_stty_cfg=$(stty -g)
-        stty -icanon -echo
-        confirm=$(dd bs=1 count=1 2>/dev/null)
-        stty "$old_stty_cfg"
-        echo "$confirm"
-        if [ "$confirm" != "y" ]; then
-            g ch "$default_branch" && g cb "$1"
-            return 1
-        fi
+        while true; do
+            echo -n "Continue? (y/N): "
+            old_stty_cfg=$(stty -g)
+            stty -icanon -echo
+            confirm=$(dd bs=1 count=1 2>/dev/null | tr '[:upper:]' '[:lower:]')
+            stty "$old_stty_cfg"
+            echo "$confirm"
+            if [[ "$confirm" == "y" ]]; then
+                break
+            elif [[ "$confirm" == "n" ]]; then
+                g ch "$default_branch" && g cb "$1"
+                return 1
+            else
+                print_warning "Invalid input. Please press 'y' or 'n'."
+            fi
+        done
     fi
     git ll >/dev/null 2>&1 || true
     output=$(git switch -c "$1" 2>&1)
