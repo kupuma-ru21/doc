@@ -137,29 +137,6 @@ pull-request() {
   g ch main
 }
 
-get-pull-request-template-file() {
-  # REF: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates#pull-request-templates
-  # > You can store your pull request template in the repository's visible root directory, the docs folder, or the hidden .github directory.
-  ROOT_DIR=$(git rev-parse --show-toplevel)
-  TARGET_DIRS=(
-    "$ROOT_DIR/.github"
-    "$ROOT_DIR"
-    "$ROOT_DIR/docs"
-  )
-  for DIR in "${TARGET_DIRS[@]}"; do
-    if [ -d "$DIR" ]; then
-      FILE_PATH=$(find "$DIR" -maxdepth 1 -iname "pull_request_template.md" 2>/dev/null)
-      if [ -n "$FILE_PATH" ]; then
-        FILENAME=$(basename "$FILE_PATH")
-        echo "$FILENAME"
-        return 0
-      fi
-    fi
-  done
-  return 1
-}
-
-
 pull-request-force() {
   g sh
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
