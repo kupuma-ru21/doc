@@ -1,2 +1,2 @@
 - I don't wanna see log after g reset
-- I wanna use pr template with gh pr
+- I wanna use pr template with gh pr: in progress
