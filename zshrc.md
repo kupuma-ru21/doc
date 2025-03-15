@@ -123,20 +123,13 @@ delete-branches-merged() {
 }
 
 get_hashes_by_last_commits_from_local_branches() {
-  declare -a commit_hashes=()
   git branch --format='%(refname:short)' | while read -r branch; do
-    hash=$(git show-ref refs/heads/$branch | awk '{print $1}')
-    if [ -n "$hash" ]; then
-      echo "Branch: $branch -> Latest Commit Hash: $hash"
-      commit_hashes+=("$hash")
-    else
-      echo "Branch: $branch -> No commits found"
-    fi
+    git show-ref refs/heads/$branch | awk '{print $1}'
   done
 }
 
 get_hashes_by_last_commits_from_pr_branches() {
-  gh pr list --state merged --limit 100 --json number --jq '.[].number' | xargs -n1 -I{} gh pr view {} --json commits --jq '.commits | last | .oid' | sort
+  gh pr list --state merged --limit 50 --json number --jq '.[].number' | xargs -n1 -I{} gh pr view {} --json commits --jq '.commits | last | .oid' | sort
 }
 
 pull-request() {
