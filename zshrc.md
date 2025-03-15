@@ -130,7 +130,7 @@ get_hashes_by_first_commits_from_pr_branches() {
   gh pr list --state merged --limit 50 --json number --jq '.[].number' | xargs -n1 -I{} gh pr view {} --json commits --jq '.commits[0].oid' | sort
 }
 
-pull-request() {
+pull-request-force() {
   g sh
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   gh pr create -a @me -t "$branch" -b ""
