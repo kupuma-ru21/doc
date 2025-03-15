@@ -66,7 +66,7 @@ meta() {
   (
     while true; do
       delete-branches-merged
-      sleep 60
+      sleep 20
     done
   ) 1>/dev/null 2>&1 &
 }
@@ -128,6 +128,15 @@ get_hashes_by_first_commits_from_local_branches() {
 
 get_hashes_by_first_commits_from_pr_branches() {
   gh pr list --state merged --limit 50 --json number --jq '.[].number' | xargs -n1 -I{} gh pr view {} --json commits --jq '.commits[0].oid' | sort
+}
+
+pull-request() {
+  g sh
+  local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  gh pr create -a @me -t "$branch" -b "test"
+  gh pr merge $(get_git_pr_url) --squash
+  gh issue close ${branch##*-}
+  g ch main
 }
 
 pull-request-force() {
