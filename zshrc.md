@@ -203,7 +203,7 @@ git-pull() {
   if [[ -z "$1" ]]; then
     git pull origin $(g get-current-branch)
   else
-    git rebase --onto "$1" $(g get-current-branch)
+    git rebase --no-autostash --no-ff origin/"$1"
   fi
 }
 
