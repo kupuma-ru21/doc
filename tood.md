@@ -1,3 +1,3 @@
 - I don't wanna see log after g reset
-- conflict2
 - f473fed572dea5b5dd5c393fec9c9fd042760ec9
+- conflict1
