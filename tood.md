@@ -1,3 +1,2 @@
 - I don't wanna see log after g reset
-- conflict3
 - conflict2
