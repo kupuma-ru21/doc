@@ -133,7 +133,7 @@ get_hashes_by_first_commits_from_pr_branches() {
 pull-request() {
   g sh
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  gh pr create --assignee @me --title "$branch" --body "test"
+  gh pr create --assignee @me --title "$branch" --template "PULL_REQUEST_TEMPLATE.md"
   gh pr merge $(get_git_pr_url) --squash
   gh issue close ${branch##*-}
   g ch main
