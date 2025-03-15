@@ -178,9 +178,9 @@ create-new-branch() {
 
 git-pull() {
   if [[ -z "$1" ]]; then
-    git pull origin $(g get-current-branch)
+    git pull --rebase --no-autostash origin $(g get-current-branch)
   else
-    git rebase --no-autostash --no-ff origin/"$1"
+    git pull --rebase --no-autostash origin "$1"
   fi
 }
 
