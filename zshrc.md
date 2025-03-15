@@ -66,7 +66,7 @@ meta() {
   (
     while true; do
       delete-branches-merged
-      sleep 20
+      sleep 120
     done
   ) 1>/dev/null 2>&1 &
 }
@@ -110,8 +110,8 @@ show-git-progress() {
 }
 
 delete-branches-merged() {
-  local_commit_hashes=$(get_hashes_by_first_commits_from_local_branches | sort | tr -d '\r')
-  pr_commit_hashes=$(get_hashes_by_first_commits_from_pr_branches | sort | tr -d '\r')
+  local_commit_hashes=$(get_hashes_by_last_commits_from_local_branches | sort | tr -d '\r')
+  pr_commit_hashes=$(get_hashes_by_last_commits_from_pr_branches | sort | tr -d '\r')
   common_hashes=$(comm -12 <(printf '%s\n' "$local_commit_hashes") <(printf '%s\n' "$pr_commit_hashes"))
   while read -r commit_hash; do
     [[ -z "$commit_hash" ]] && continue
@@ -122,12 +122,21 @@ delete-branches-merged() {
   done <<< "$common_hashes"
 }
 
-get_hashes_by_first_commits_from_local_branches() {
-  git for-each-ref --format='%(objectname)' refs/heads/
+get_hashes_by_last_commits_from_local_branches() {
+  declare -a commit_hashes=()
+  git branch --format='%(refname:short)' | while read -r branch; do
+    hash=$(git show-ref refs/heads/$branch | awk '{print $1}')
+    if [ -n "$hash" ]; then
+      echo "Branch: $branch -> Latest Commit Hash: $hash"
+      commit_hashes+=("$hash")
+    else
+      echo "Branch: $branch -> No commits found"
+    fi
+  done
 }
 
-get_hashes_by_first_commits_from_pr_branches() {
-  gh pr list --state merged --limit 50 --json number --jq '.[].number' | xargs -n1 -I{} gh pr view {} --json commits --jq '.commits[0].oid' | sort
+get_hashes_by_last_commits_from_pr_branches() {
+  gh pr list --state merged --limit 100 --json number --jq '.[].number' | xargs -n1 -I{} gh pr view {} --json commits --jq '.commits | last | .oid' | sort
 }
 
 pull-request() {
