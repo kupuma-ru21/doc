@@ -1,2 +1,2 @@
 - I don't wanna see log after g reset
-- conflict2
+- something
