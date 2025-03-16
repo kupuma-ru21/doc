@@ -66,7 +66,7 @@ meta() {
   (
     while true; do
       delete-branches-merged
-      sleep 120
+      sleep 30
     done
   ) 1>/dev/null 2>&1 &
 }
@@ -110,26 +110,32 @@ show-git-progress() {
 }
 
 delete-branches-merged() {
-  local_commit_hashes=$(get_hashes_by_last_commits_from_local_branches | sort | tr -d '\r')
-  pr_commit_hashes=$(get_hashes_by_last_commits_from_pr_branches | sort | tr -d '\r')
-  common_hashes=$(comm -12 <(printf '%s\n' "$local_commit_hashes") <(printf '%s\n' "$pr_commit_hashes"))
-  while read -r commit_hash; do
-    [[ -z "$commit_hash" ]] && continue
-    git branch --contains "$commit_hash" | tr -d '\r' | while read -r branch; do
-      [[ -z "$branch" ]] && continue
-      git delete-branch-both-local-remote "$branch"
-    done
-  done <<< "$common_hashes"
+  while read -r line; do
+    branch_name=$(echo "$line" | cut -d':' -f1)
+    commit_hash=$(echo "$line" | cut -d':' -f2)
+    echo "🔍 Searching PRs for branch: $branch_name, hash: $commit_hash"
+    pr_result=$(gh pr list --search "$commit_hash" --head "$branch_name" --state merged)
+    if [[ -n "$pr_result" ]]; then
+      echo "✅ PR found for branch: $branch_name. Deleting branch..."
+      git branch -D "$branch_name" && echo "🗑 Deleted local branch: $branch_name"
+      git push origin --delete "$branch_name" && echo "🗑 Deleted remote branch: $branch_name"
+    else
+      echo "❌ No merged PR found for branch: $branch_name. Skipping deletion."
+    fi
+  done < <(get_hashes_by_last_commits_from_local_branches)
 }
 
 get_hashes_by_last_commits_from_local_branches() {
-  git branch --format='%(refname:short)' | while read -r branch; do
-    git show-ref refs/heads/$branch | awk '{print $1}'
-  done
-}
+  default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  branch_hashes=()
+  while read -r branch; do
+    commit_hash=$(git log -n 1 --pretty=format:"%H" "$branch")
+    branch_hashes+=("$branch:$commit_hash")  # "ブランチ名:ハッシュ" の形式で追加
+  done < <(git branch --format='%(refname:short)' | grep -v "^${default_branch}$")
 
-get_hashes_by_last_commits_from_pr_branches() {
-  gh pr list --state merged --limit 50 --json number --jq '.[].number' | xargs -n1 -I{} gh pr view {} --json commits --jq '.commits | last | .oid' | sort
+  for entry in "${branch_hashes[@]}"; do
+    echo "$entry"
+  done
 }
 
 pull-request() {
