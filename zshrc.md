@@ -154,33 +154,29 @@ remove-vscode-caches() {
   rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage
 }
 
-
 update_vscode_excludes() {
   local settings_path="$HOME/Library/Application Support/Code/User/settings.json"
-
-  # .gitignore の内容を取得し、不要な行を削除
   local gitignore_patterns
   gitignore_patterns=$(find . -type f -name ".gitignore" -exec cat {} + | \
     sed -E '/^#/d; /^\s*$/d; s#\*\*/##g; s#/$##' | sort -u | sed 's#^/##')
-
-  # JSON 形式に変換
-  local excludes_json="{"
-  local first=true
+  local excludes_json="{ \"**/.git\": true, \"**/.DS_Store\": true"
+  local watcher_excludes_json="{ \"**/.git/objects\": true"
+  local search_excludes_json="{ \"**/.git\": true, \"**/.DS_Store\": true"
   while read -r pattern; do
     [[ -n "$pattern" ]] || continue
-    if [ "$first" = true ]; then
-      first=false
-    else
-      excludes_json+=","
-    fi
-    excludes_json+=" \"**/$pattern\": true"
+    excludes_json+=", \"**/$pattern\": true"
+    watcher_excludes_json+=", \"**/$pattern\": true"
+    search_excludes_json+=", \"**/$pattern\": true"
   done <<< "$gitignore_patterns"
   excludes_json+=" }"
-
-  # settings.json を更新
+  watcher_excludes_json+=" }"
+  search_excludes_json+=" }"
   if [[ -n "$gitignore_patterns" ]]; then
-    jq '."files.exclude" = $new | ."files.watcherExclude" = $new | ."search.exclude" = $new' \
-      --argjson new "$excludes_json" "$settings_path" > temp.json && mv temp.json "$settings_path"
+    jq '."files.exclude" = $excludes | ."files.watcherExclude" = $watcher_excludes | ."search.exclude" = $search_excludes' \
+      --argjson excludes "$excludes_json" \
+      --argjson watcher_excludes "$watcher_excludes_json" \
+      --argjson search_excludes "$search_excludes_json" \
+      "$settings_path" > temp.json && mv temp.json "$settings_path"
   fi
 }
 
