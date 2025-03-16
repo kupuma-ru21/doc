@@ -69,6 +69,15 @@ meta() {
       sleep 30
     done
   ) 1>/dev/null 2>&1 &
+
+  pkill -f remove-vscode-caches
+
+  (
+    while true; do
+      remove-vscode-caches
+      sleep 600
+    done
+  ) 1>/dev/null 2>&1 &
 }
 
 show-git-progress() {
@@ -136,6 +145,12 @@ get_hashes_by_last_commits_from_local_branches() {
   for entry in "${branch_hashes[@]}"; do
     echo "$entry"
   done
+}
+
+remove-vscode-caches() {
+  rm -rf ~/Library/Application\ Support/Code/Cache
+  rm -rf ~/Library/Application\ Support/Code/CachedData
+  rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage
 }
 
 pull-request() {

@@ -10,6 +10,8 @@
   },
   "typescript.surveys.enabled": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+  "typescript.tsserver.log": "off",
   // Go
   "[go]": {
     "editor.defaultFormatter": "golang.go",
@@ -45,7 +47,10 @@
   // Terminal
   "terminal.integrated.tabs.enabled": false,
   "terminal.integrated.letterSpacing": -0.5,
-  "terminal.integrated.env.osx": {"VSCODE_WORKSPACE": "${workspaceFolder}"},
+  "terminal.integrated.env.osx": {
+    "VSCODE_WORKSPACE": "${workspaceFolder}",
+    "Q_NEW_SESSION": "1"
+  },
   "terminal.integrated.env.linux": {"VSCODE_WORKSPACE": "${workspaceFolder}"},
   // Editor
   "editor.guides.bracketPairs": true,
@@ -72,6 +77,12 @@
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000,
   "files.trimTrailingWhitespace": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true
+  },
+  "files.watcherExclude": {"**/node_modules/**": true},
   // Workbench
   "workbench.colorTheme": "Gruvbox Dark (Hard)",
   "workbench.iconTheme": "vscode-icons",
@@ -83,5 +94,11 @@
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
   // Prettier
-  "prettier.bracketSpacing": false
+  "prettier.bracketSpacing": false,
+  // Search
+  "search.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true
+  }
 }

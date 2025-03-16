@@ -2,7 +2,6 @@
 
 - https://marketplace.visualstudio.com/items?itemName=tomphilbin.gruvbox-themes
 - https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
-- https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph
 - https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
 - https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces
 - https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
@@ -20,7 +19,6 @@
 
 - https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag
 - https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost
-- https://marketplace.visualstudio.com/items?itemName=deque-systems.vscode-axe-linter
 - https://marketplace.visualstudio.com/items?itemName=yusukehirao.vscode-markuplint
 - https://marketplace.visualstudio.com/items?itemName=MylesMurphy.prettify-ts
 
@@ -36,9 +34,6 @@
 # Optional(BackEnd Only)
 
 - https://marketplace.visualstudio.com/items?itemName=golang.go
-
-  - https://stackoverflow.com/questions/71101439/how-can-i-configure-the-staticcheck-linter-in-visual-studio-code
-
 - https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml
 
 # IaC
