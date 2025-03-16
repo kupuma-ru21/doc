@@ -1,5 +1,5 @@
 {
-  // Typescript
+  "// Typescript": "",
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
@@ -12,7 +12,8 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.tsserver.experimental.enableProjectDiagnostics": false,
   "typescript.tsserver.log": "off",
-  // Go
+
+  "// Go": "",
   "[go]": {
     "editor.defaultFormatter": "golang.go",
     "editor.formatOnSave": true
@@ -20,13 +21,15 @@
   "gopls": {"ui.diagnostic.staticcheck": true},
   "go.showWelcome": false,
   "go.toolsManagement.autoUpdate": true,
-  // Javascript
+
+  "// Javascript": "",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
-  // Json
+
+  "// Json": "",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
@@ -35,16 +38,24 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
-  // Graphql
+
+  "// Graphql": "",
   "[graphql]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
-  // Markdown
-  "[markdown]": {"editor.formatOnSave": false}, // REF: https://jsnotice.com/posts/2021-05-27/
-  // HTML
-  "html.autoClosingTags": true, // REF: https://stackoverflow.com/questions/49391798/vs-code-turn-off-auto-close-tags-but-leave-on-autocomplete#:~:text=Go%20to%20File%20%3E%20Preferences%20%3E%20Settings,make%20it%20autocomplete%20for%20you
-  // Terminal
+
+  "// Markdown": "",
+  "[markdown]": {
+    "REF": "https://jsnotice.com/posts/2021-05-27/",
+    "editor.formatOnSave": false
+  },
+
+  "// HTML": "",
+  "// REF: html.autoClosingTags": "https://stackoverflow.com/questions/49391798/vs-code-turn-off-auto-close-tags-but-leave-on-autocomplete#:~:text=Go%20to%20File%20%3E%20Preferences%20%3E%20Settings,make%20it%20autocomplete%20for%20you",
+  "html.autoClosingTags": true,
+
+  "// Terminal": "",
   "terminal.integrated.tabs.enabled": false,
   "terminal.integrated.letterSpacing": -0.5,
   "terminal.integrated.env.osx": {
@@ -52,10 +63,12 @@
     "Q_NEW_SESSION": "1"
   },
   "terminal.integrated.env.linux": {"VSCODE_WORKSPACE": "${workspaceFolder}"},
-  // Editor
+
+  "// Editor": "",
   "editor.guides.bracketPairs": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit", // REF: https://dev.to/krisplatis/auto-add-missing-imports-on-file-save-in-vs-code-1b89
+    "// REF": "https://dev.to/krisplatis/auto-add-missing-imports-on-file-save-in-vs-code-1b89",
+    "source.organizeImports": "explicit",
     "source.addMissingImports": "explicit",
     "source.fixAll.eslint": "explicit"
   },
@@ -68,11 +81,13 @@
   "editor.wordWrap": "on",
   "editor.renderControlCharacters": true,
   "editor.accessibilitySupport": "off",
-  // Window
+
+  "// Window": "",
   "window.zoomLevel": 1.5,
   "window.commandCenter": false,
   "window.title": " ",
-  // Files
+
+  "// Files": "",
   "files.insertFinalNewline": true,
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000,
@@ -83,19 +98,23 @@
     "**/node_modules": true
   },
   "files.watcherExclude": {"**/node_modules/**": true},
-  // Workbench
+
+  "// Workbench": "",
   "workbench.colorTheme": "Gruvbox Dark (Hard)",
   "workbench.iconTheme": "vscode-icons",
   "workbench.editor.enablePreview": false,
   "workbench.welcomePage.walkthroughs.openOnInstall": false,
   "workbench.startupEditor": "none",
   "workbench.activityBar.location": "hidden",
-  // Explorer
+
+  "// Explorer": "",
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
-  // Prettier
+
+  "// Prettier": "",
   "prettier.bracketSpacing": false,
-  // Search
+
+  "// Search": "",
   "search.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
