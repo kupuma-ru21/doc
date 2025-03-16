@@ -54,6 +54,7 @@ get_git_pr_url() {
 }
 
 meta() {
+  update_vscode_excludes
   pkill -f show-git-progress
   while true; do
     c
@@ -151,6 +152,36 @@ remove-vscode-caches() {
   rm -rf ~/Library/Application\ Support/Code/Cache
   rm -rf ~/Library/Application\ Support/Code/CachedData
   rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage
+}
+
+
+update_vscode_excludes() {
+  local settings_path="$HOME/Library/Application Support/Code/User/settings.json"
+
+  # .gitignore の内容を取得し、不要な行を削除
+  local gitignore_patterns
+  gitignore_patterns=$(find . -type f -name ".gitignore" -exec cat {} + | \
+    sed -E '/^#/d; /^\s*$/d; s#\*\*/##g; s#/$##' | sort -u | sed 's#^/##')
+
+  # JSON 形式に変換
+  local excludes_json="{"
+  local first=true
+  while read -r pattern; do
+    [[ -n "$pattern" ]] || continue
+    if [ "$first" = true ]; then
+      first=false
+    else
+      excludes_json+=","
+    fi
+    excludes_json+=" \"**/$pattern\": true"
+  done <<< "$gitignore_patterns"
+  excludes_json+=" }"
+
+  # settings.json を更新
+  if [[ -n "$gitignore_patterns" ]]; then
+    jq '."files.exclude" = $new | ."files.watcherExclude" = $new | ."search.exclude" = $new' \
+      --argjson new "$excludes_json" "$settings_path" > temp.json && mv temp.json "$settings_path"
+  fi
 }
 
 pull-request() {
