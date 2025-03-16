@@ -200,6 +200,8 @@ git() {
       ret=$?
       if echo "$output" | grep -q "fatal: invalid upstream"; then
         return $ret
+      elif echo "$output" | grep -q "fatal: couldn't find remote ref"; then
+        return $ret
       else
         echo "$output"
         return $ret
@@ -216,6 +218,7 @@ git() {
       ;;
   esac
 }
+
 
 handle_git_command() {
     local no_edit_flag="$1"
