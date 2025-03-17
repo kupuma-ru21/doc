@@ -84,6 +84,13 @@
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
 
+  // go to type definition
+  {
+    "key": "shift+Enter",
+    "command": "editor.action.goToTypeDefinition",
+    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+  },
+
   // fold source codes
   {
     "key": "alt+right",
