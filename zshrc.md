@@ -160,7 +160,7 @@ update_vscode_excludes() {
   gitignore_patterns=$(find . -type f -name ".gitignore" -exec cat {} + | \
     sed -E '/^#/d; /^\s*$/d; s#\*\*/##g; s#/$##' | sort -u | sed 's#^/##')
   local excludes_json="{ \"**/.git\": true, \"**/.DS_Store\": true"
-  local watcher_excludes_json="{ \"**/.git/objects\": true"
+  local watcher_excludes_json="{ \"**/.git\": true"
   local search_excludes_json="{ \"**/.git\": true, \"**/.DS_Store\": true"
   while read -r pattern; do
     [[ -n "$pattern" ]] || continue
