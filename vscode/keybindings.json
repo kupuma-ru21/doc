@@ -92,7 +92,7 @@
   // go to type definition
   {
     "key": "shift+Enter",
-    "command": "editor.action.goToTypeDefinition",
+    "command": "editor.action.revealDefinition",
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
 
