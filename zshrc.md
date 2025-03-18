@@ -60,7 +60,7 @@ meta() {
     c
     show-git-progress
     sleep 60
-  done &
+  done
 
   pkill -f delete-branches-merged
 
@@ -157,20 +157,25 @@ remove-vscode-caches() {
 update_vscode_excludes() {
   local settings_path="$HOME/Library/Application Support/Code/User/settings.json"
   local gitignore_patterns
+
   gitignore_patterns=$(find . -type f -name ".gitignore" -exec cat {} + | \
-    sed -E '/^#/d; /^\s*$/d; s#\*\*/##g; s#/$##' | sort -u | sed 's#^/##')
-  local excludes_json="{ \"**/.git\": true, \"**/.DS_Store\": true"
-  local watcher_excludes_json="{ \"**/.git\": true"
-  local search_excludes_json="{ \"**/.git\": true, \"**/.DS_Store\": true"
+    sed -E '/^#/d; /^\s*$/d; s#\*\*/##g; s#/$##' | sort -u | sed 's#^/##' | grep -vE '^\.env$')
+
+  local excludes_json="{ \"**/.git\": true, \"**/.DS_Store\": true, \"**/generated\": true"
+  local watcher_excludes_json="{ \"**/.git\": true, \"**/generated\": true"
+  local search_excludes_json="{ \"**/.git\": true, \"**/.DS_Store\": true, \"**/generated\": true"
+
   while read -r pattern; do
     [[ -n "$pattern" ]] || continue
     excludes_json+=", \"**/$pattern\": true"
     watcher_excludes_json+=", \"**/$pattern\": true"
     search_excludes_json+=", \"**/$pattern\": true"
   done <<< "$gitignore_patterns"
+
   excludes_json+=" }"
   watcher_excludes_json+=" }"
   search_excludes_json+=" }"
+
   if [[ -n "$gitignore_patterns" ]]; then
     jq '."files.exclude" = $excludes | ."files.watcherExclude" = $watcher_excludes | ."search.exclude" = $search_excludes' \
       --argjson excludes "$excludes_json" \
