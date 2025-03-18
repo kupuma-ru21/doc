@@ -67,11 +67,23 @@
     "command": "workbench.action.terminal.kill",
     "when": "terminalFocus"
   },
+  {
+    "key": "cmd+W",
+    "command": "workbench.action.closeActiveEditor",
+    "when": "resourceScheme == 'vscode-terminal'"
+  },
 
   // clear terminal history
   {
     "key": "cmd+L",
     "command": "workbench.action.terminal.clear",
+    "when": "terminalFocus"
+  },
+
+  // move terminal into editor Area
+  {
+    "key": "shift+E",
+    "command": "workbench.action.terminal.moveToEditor",
     "when": "terminalFocus"
   },
 
