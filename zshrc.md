@@ -10,7 +10,6 @@ alias c='clear && printf "\e[3J"'
 alias e='code .'
 
 if [[ -z "$TMUX" ]]; then
-  # tmux list-sessions | awk -F: '{print $1}' | xargs -I {} tmux kill-session -t {}
   exec tmux
 fi
 
@@ -298,4 +297,15 @@ print_warning() {
 get_default_branch() {
   git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"
 }
+
+cleanup_tmux() {
+  if [ -n "$TMUX" ]; then
+    TMUX_PID=$(pgrep -P $$ tmux)
+    if [ -n "$TMUX_PID" ]; then
+      kill -9 "$TMUX_PID"
+    fi
+  fi
+}
+trap cleanup_tmux EXIT HUP
+
 ```
