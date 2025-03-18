@@ -75,10 +75,10 @@
     "when": "terminalFocus"
   },
 
-  // go to implementation
+  // go to type definition
   {
     "key": "cmd+Enter",
-    "command": "editor.action.goToImplementation",
+    "command": "editor.action.revealDefinition",
     "when": "editorHasImplementationProvider && editorTextFocus && !isInEmbeddedEditor"
   },
 
@@ -89,10 +89,10 @@
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
 
-  // go to type definition
+  // go to implementation
   {
     "key": "shift+Enter",
-    "command": "editor.action.revealDefinition",
+    "command": "editor.action.goToImplementation",
     "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
   },
 
