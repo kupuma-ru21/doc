@@ -1,1 +1,1 @@
-- I don't wanna see log after g reset
+- I wanna open link in terminal without mouse
