@@ -75,7 +75,7 @@
     "when": "terminalFocus"
   },
 
-  // go to type definition
+  // go to definition
   {
     "key": "cmd+Enter",
     "command": "editor.action.revealDefinition",
