@@ -165,7 +165,7 @@ update_vscode_excludes() {
   EXCLUDE_JSON=$(find . -type f -name ".gitignore" -exec sh -c '
     dir=$(dirname "{}");
     awk -v d="$dir" "{
-      if (\$0 !~ /^\\s*$/) {
+      if (\$0 !~ /^\\s*$/ && \$0 !~ /^\\.env(\/|\s*$)/) {  # .env を除外
         path = (substr(\$0, 1, 1) == \"/\" || \$0 ~ /^#/ ? \$0 : d \"/\" \$0);
         gsub(/^\.\//, \"\", path);  # 先頭の "./" を削除
         print \"\\\"\" path \"\\\": true\"
