@@ -159,33 +159,42 @@ remove-vscode-caches() {
 }
 
 update_vscode_excludes() {
-  local settings_path="$HOME/Library/Application Support/Code/User/settings.json"
-  local gitignore_patterns
+  SETTINGS_PATH="$HOME/Library/Application Support/Code/User/settings.json"
 
-  gitignore_patterns=$(find . -type f -name ".gitignore" -exec cat {} + | \
-    sed -E '/^#/d; /^\s*$/d; s#\*\*/##g; s#/$##' | sort -u | sed 's#^/##' | grep -vE '^\.env$')
+  # .gitignore の内容から exclude 用の JSON を生成
+  EXCLUDE_JSON=$(find . -type f -name ".gitignore" -exec sh -c '
+    dir=$(dirname "{}");
+    awk -v d="$dir" "{
+      if (\$0 !~ /^\\s*$/) {
+        path = (substr(\$0, 1, 1) == \"/\" || \$0 ~ /^#/ ? \$0 : d \"/\" \$0);
+        gsub(/^\.\//, \"\", path);  # 先頭の "./" を削除
+        print \"\\\"\" path \"\\\": true\"
+      }
+    }" "{}"
+  ' \; | grep -v '^\s*$' | awk '
+    BEGIN { print "{" }
+    { lines[NR] = $0 }
+    END {
+      for (i = 1; i <= NR; i++) {
+        if (i < NR) {
+          print "    " lines[i] ","
+        } else {
+          print "    " lines[i]   # 最後のカンマを削除
+        }
+      }
+      print "}"
+    }')
 
-  local excludes_json="{ \"**/.git\": true, \"**/.DS_Store\": true, \"**/generated\": true"
-  local watcher_excludes_json="{ \"**/.git\": true, \"**/generated\": true"
-  local search_excludes_json="{ \"**/.git\": true, \"**/.DS_Store\": true, \"**/generated\": true"
+  # `.git` を追加
+  EXCLUDE_JSON=$(echo "$EXCLUDE_JSON" | jq '. + {".git": true}')
 
-  while read -r pattern; do
-    [[ -n "$pattern" ]] || continue
-    excludes_json+=", \"**/$pattern\": true"
-    watcher_excludes_json+=", \"**/$pattern\": true"
-    search_excludes_json+=", \"**/$pattern\": true"
-  done <<< "$gitignore_patterns"
-
-  excludes_json+=" }"
-  watcher_excludes_json+=" }"
-  search_excludes_json+=" }"
-
-  if [[ -n "$gitignore_patterns" ]]; then
-    jq '."files.exclude" = $excludes | ."files.watcherExclude" = $watcher_excludes | ."search.exclude" = $search_excludes' \
-      --argjson excludes "$excludes_json" \
-      --argjson watcher_excludes "$watcher_excludes_json" \
-      --argjson search_excludes "$search_excludes_json" \
-      "$settings_path" > temp.json && mv temp.json "$settings_path"
+  # settings.json を更新
+  if [[ -n "$EXCLUDE_JSON" && "$EXCLUDE_JSON" != '{}' ]]; then
+    jq --argjson new_excludes "$EXCLUDE_JSON" '
+      .["files.exclude"] = $new_excludes
+      | .["files.watcherExclude"] = $new_excludes
+      | .["search.exclude"] = $new_excludes
+    ' "$SETTINGS_PATH" > "${SETTINGS_PATH}.tmp" && mv "${SETTINGS_PATH}.tmp" "$SETTINGS_PATH"
   fi
 }
 
@@ -307,5 +316,4 @@ cleanup_tmux() {
   fi
 }
 trap cleanup_tmux EXIT HUP
-
 ```
