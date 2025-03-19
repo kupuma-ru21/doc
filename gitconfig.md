@@ -29,4 +29,5 @@ git config --global core.editor code && git config --global -e
     b = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset): %(color:red)(%(committerdate:relative)) %(color:green)[%(authorname)]' --sort=-committerdate
 	pr = !zsh -i -c \"pull-request\"
     df=!git diff HEAD --name-only
+    stone = !sh -c 'stash push -m "stash" -- $1' -
 ```
