@@ -25,7 +25,8 @@ git config --global core.editor code && git config --global -e
     wipe = !sh -c 'git restore . && git clean -fd' -
     rb = !git branch -m
     rmc = !git reset --hard HEAD~1
-	pr = !zsh -i -c \"pull-request\"
     # https://snyk.io/blog/10-git-aliases-for-faster-and-productive-git-workflow/
     b = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset): %(color:red)(%(committerdate:relative)) %(color:green)[%(authorname)]' --sort=-committerdate
+	pr = !zsh -i -c \"pull-request\"
+    df=!git diff --name-only --staged
 ```
