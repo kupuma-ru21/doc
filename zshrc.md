@@ -58,31 +58,59 @@ get_git_pr_url() {
 }
 
 meta() {
+  # 1
   update_vscode_excludes
-  pkill -f show-git-progress
-  while true; do
-    c
-    show-git-progress
-    sleep 60
-  done
 
+  # 2
   pkill -f delete-branches-merged
+  echo 'function delete-branches-merged() {
+    while read -r line; do
+      branch_name=$(echo "$line" | cut -d":" -f1)
+      commit_hash=$(echo "$line" | cut -d":" -f2)
+      echo "🔍 Searching PRs for branch: $branch_name, hash: $commit_hash"
+      pr_result=$(gh pr list --search "$commit_hash" --head "$branch_name" --state merged)
+      if [[ -n "$pr_result" ]]; then
+        echo "✅ PR found for branch: $branch_name. Deleting branch..."
+        git branch -D "$branch_name" && echo "🗑 Deleted local branch: $branch_name"
+        git push origin --delete "$branch_name" && echo "🗑 Deleted remote branch: $branch_name"
+      else
+        echo "❌ No merged PR found for branch: $branch_name. Skipping deletion."
+      fi
+    done < <(get_hashes_by_last_commits_from_local_branches)
+  }' > /tmp/delete-branches-merged.sh
 
+  source /tmp/delete-branches-merged.sh
   (
+    source /tmp/delete-branches-merged.sh
     while true; do
       delete-branches-merged
       sleep 30
     done
   ) 1>/dev/null 2>&1 &
 
-  pkill -f remove-vscode-caches
-
+  # 3
+  echo 'remove-vscode-caches() {
+    echo "Removing VSCode caches..."
+    rm -rf ~/Library/Application\ Support/Code/Cache
+    rm -rf ~/Library/Application\ Support/Code/CachedData
+    rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage
+  }' > /tmp/remove-vscode-caches.sh
+  source /tmp/remove-vscode-caches.sh
   (
+    source /tmp/remove-vscode-caches.sh
     while true; do
       remove-vscode-caches
       sleep 600
     done
   ) 1>/dev/null 2>&1 &
+
+  # 4
+  while true; do
+    c
+    show-git-progress
+    sleep 60
+  done
+
 }
 
 show-git-progress() {
@@ -123,22 +151,6 @@ show-git-progress() {
   fi
 }
 
-delete-branches-merged() {
-  while read -r line; do
-    branch_name=$(echo "$line" | cut -d':' -f1)
-    commit_hash=$(echo "$line" | cut -d':' -f2)
-    echo "🔍 Searching PRs for branch: $branch_name, hash: $commit_hash"
-    pr_result=$(gh pr list --search "$commit_hash" --head "$branch_name" --state merged)
-    if [[ -n "$pr_result" ]]; then
-      echo "✅ PR found for branch: $branch_name. Deleting branch..."
-      git branch -D "$branch_name" && echo "🗑 Deleted local branch: $branch_name"
-      git push origin --delete "$branch_name" && echo "🗑 Deleted remote branch: $branch_name"
-    else
-      echo "❌ No merged PR found for branch: $branch_name. Skipping deletion."
-    fi
-  done < <(get_hashes_by_last_commits_from_local_branches)
-}
-
 get_hashes_by_last_commits_from_local_branches() {
   default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
   branch_hashes=()
@@ -150,12 +162,6 @@ get_hashes_by_last_commits_from_local_branches() {
   for entry in "${branch_hashes[@]}"; do
     echo "$entry"
   done
-}
-
-remove-vscode-caches() {
-  rm -rf ~/Library/Application\ Support/Code/Cache
-  rm -rf ~/Library/Application\ Support/Code/CachedData
-  rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage
 }
 
 update_vscode_excludes() {
