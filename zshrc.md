@@ -1,3 +1,10 @@
+- run `code ~/.zshrc`
+
+ ```
+ code ~/.zshrc
+ ```
+
+```
 alias g='git'
 alias c='clear && printf "\e[3J"'
 alias e='code .'
@@ -299,3 +306,4 @@ cleanup_tmux() {
   fi
 }
 trap cleanup_tmux EXIT HUP
+```
