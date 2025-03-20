@@ -26,15 +26,8 @@
 
 - https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 - https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
-- https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
-- https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components
-- https://marketplace.visualstudio.com/items?itemName=sainoba.px-to-rem
 - https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
 
 # Optional(BackEnd Only)
-
 - https://marketplace.visualstudio.com/items?itemName=golang.go
-- https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml
 
-# IaC
-- https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform

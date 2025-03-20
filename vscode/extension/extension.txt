@@ -1,4 +1,4 @@
-# cat vscode-extensions.txt | xargs -n1 code --install-extension
+# cat vscode-extensions.txt | grep -v '^#' | xargs -n1 code --install-extension
 
 # Required(FrontEnd and BackEnd)
 tomphilbin.gruvbox-themes
@@ -24,14 +24,7 @@ MylesMurphy.prettify-ts
 # Optional(FrontEnd Only)
 esbenp.prettier-vscode
 dbaeumer.vscode-eslint
-stylelint.vscode-stylelint
-styled-components.vscode-styled-components
-sainoba.px-to-rem
 ritwickdey.LiveServer
 
 # Optional(BackEnd Only)
 golang.go
-tamasfe.even-better-toml
-
-# IaC
-HashiCorp.terraform

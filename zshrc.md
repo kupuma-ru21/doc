@@ -93,7 +93,8 @@ meta() {
     echo "Removing VSCode caches..."
     rm -rf ~/Library/Application\ Support/Code/Cache
     rm -rf ~/Library/Application\ Support/Code/CachedData
-    rm -rf ~/Library/Application\ Support/Code/User/workspaceStorage
+    rm -rf ~/Library/Application\ Support/Code/CachedExtensions
+    rm -rf ~/Library/Application\ Support/Code/logs
   }' > /tmp/remove-vscode-caches.sh
   source /tmp/remove-vscode-caches.sh
   (
