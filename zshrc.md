@@ -1,8 +1,8 @@
 - run `code ~/.zshrc`
 
- ```
- code ~/.zshrc
- ```
+```
+code ~/.zshrc
+```
 
 ```
 alias g='git'
