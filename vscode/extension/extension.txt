@@ -1,0 +1,37 @@
+# cat vscode-extensions.txt | xargs -n1 code --install-extension
+
+# Required(FrontEnd and BackEnd)
+tomphilbin.gruvbox-themes
+streetsidesoftware.code-spell-checker
+eamodio.gitlens
+shardulm94.trailing-spaces
+vscode-icons-team.vscode-icons
+mikestead.dotenv
+usernamehw.errorlens
+wmaurer.change-case
+GitHub.copilot
+Gruntfuggly.activitusbar
+
+# Optional(FrontEnd and BackEnd)
+GraphQL.vscode-graphql-syntax
+
+# Required(FrontEnd Only)
+formulahendry.auto-rename-tag
+wix.vscode-import-cost
+yusukehirao.vscode-markuplint
+MylesMurphy.prettify-ts
+
+# Optional(FrontEnd Only)
+esbenp.prettier-vscode
+dbaeumer.vscode-eslint
+stylelint.vscode-stylelint
+styled-components.vscode-styled-components
+sainoba.px-to-rem
+ritwickdey.LiveServer
+
+# Optional(BackEnd Only)
+golang.go
+tamasfe.even-better-toml
+
+# IaC
+HashiCorp.terraform
