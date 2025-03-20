@@ -1,10 +1,3 @@
-- run `code ~/.zshrc`
-
-```
-code ~/.zshrc
-```
-
-```
 alias g='git'
 alias c='clear && printf "\e[3J"'
 alias e='code .'
@@ -89,23 +82,6 @@ meta() {
   ) 1>/dev/null 2>&1 &
 
   # 3
-  echo 'remove-vscode-caches() {
-    echo "Removing VSCode caches..."
-    rm -rf ~/Library/Application\ Support/Code/Cache
-    rm -rf ~/Library/Application\ Support/Code/CachedData
-    rm -rf ~/Library/Application\ Support/Code/CachedExtensions
-    rm -rf ~/Library/Application\ Support/Code/logs
-  }' > /tmp/remove-vscode-caches.sh
-  source /tmp/remove-vscode-caches.sh
-  (
-    source /tmp/remove-vscode-caches.sh
-    while true; do
-      remove-vscode-caches
-      sleep 600
-    done
-  ) 1>/dev/null 2>&1 &
-
-  # 4
   while true; do
     c
     show-git-progress
@@ -323,4 +299,3 @@ cleanup_tmux() {
   fi
 }
 trap cleanup_tmux EXIT HUP
-```
