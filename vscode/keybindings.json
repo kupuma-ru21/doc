@@ -128,6 +128,17 @@
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "panelFocus && !terminalFindVisible"
   },
+  {
+    "key": "cmd+a",
+    "command": "extension.multiCommand.execute",
+    "args": {
+      "sequence": [
+        "workbench.action.focusActiveEditorGroup",
+        "editor.action.selectAll"
+      ]
+    },
+    "when": "listFocus"
+  },
 
   // show context menu
   {

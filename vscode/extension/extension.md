@@ -1,5 +1,6 @@
 # Required(FrontEnd and BackEnd)
 
+- https://marketplace.visualstudio.com/items?itemName=ryuta46.multi-command
 - https://marketplace.visualstudio.com/items?itemName=tomphilbin.gruvbox-themes
 - https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
 - https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
