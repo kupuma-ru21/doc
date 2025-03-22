@@ -30,5 +30,6 @@ git config --global core.editor code && git config --global -e
 	pr = !zsh -i -c \"pull-request\"
     df=!zsh -i -c 'git-open-file-changed'
     stone = !sh -c 'git stash push -m "stash" -- $1' -
+    unstage-one = !git restore --staged
 ```
 
