@@ -11,6 +11,7 @@
 - https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case
 - https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
 - https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.activitusbar
+- https://marketplace.visualstudio.com/items?itemName=kupuma-ru21.Cursorghost
 
 # Optional(FrontEnd and BackEnd)
 
