@@ -195,15 +195,6 @@ pull-request() {
   g ch main
 }
 
-pull-request-force() {
-  g sh
-  local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  gh pr create -a @me -t "$branch" -b ""
-  gh pr merge $(get_git_pr_url) --squash
-  gh issue close ${branch##*-}
-  g ch main
-}
-
 create-new-branch() {
     default_branch=$(get_default_branch)
     current_branch=$(g get-current-branch)
@@ -240,6 +231,19 @@ git-pull() {
   else
     git pull --rebase --no-autostash origin "$1"
   fi
+}
+
+git-open-file-changed() {
+  code $(git diff --name-only HEAD | head -n 1)
+}
+
+pull-request-force() {
+  g sh
+  local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  gh pr create -a @me -t "$branch" -b ""
+  gh pr merge $(get_git_pr_url) --squash
+  gh issue close ${branch##*-}
+  g ch main
 }
 
 

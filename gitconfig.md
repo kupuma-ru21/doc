@@ -28,6 +28,7 @@ git config --global core.editor code && git config --global -e
     # https://snyk.io/blog/10-git-aliases-for-faster-and-productive-git-workflow/
     b = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset): %(color:red)(%(committerdate:relative)) %(color:green)[%(authorname)]' --sort=-committerdate
 	pr = !zsh -i -c \"pull-request\"
-    df=!git diff HEAD --name-only
+    df=!zsh -i -c 'git-open-file-changed'
     stone = !sh -c 'git stash push -m "stash" -- $1' -
 ```
+
