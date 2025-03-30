@@ -91,6 +91,9 @@
   "workbench.welcomePage.walkthroughs.openOnInstall": false,
   "workbench.startupEditor": "none",
   "workbench.activityBar.location": "hidden",
+  "workbench.colorCustomizations": {
+    "editor.lineHighlightBackground": "#ffff0033"
+  },
   "// Explorer": "",
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
