@@ -92,7 +92,7 @@
   "workbench.startupEditor": "none",
   "workbench.activityBar.location": "hidden",
   "workbench.colorCustomizations": {
-    "editor.lineHighlightBackground": "#ffff0033"
+    "editor.lineHighlightBackground": "#ffeb3b66"
   },
   "// Explorer": "",
   "explorer.confirmDelete": false,
