@@ -6,6 +6,7 @@
 - https://formulae.brew.sh/cask/battery
 - https://formulae.brew.sh/cask/amazon-q
 - https://formulae.brew.sh/cask/alfred
+- https://app.grammarly.com/
 
 # Development
 
