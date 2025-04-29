@@ -11,6 +11,7 @@
 # Development
 
 - [VScode](https://formulae.brew.sh/cask/visual-studio-code)
+- [nodebrew](https://formulae.brew.sh/formula/nodebrew)
 - [gh](https://formulae.brew.sh/formula/gh)
 - [jq](https://formulae.brew.sh/formula/jq)
 - [ngrok](https://ngrok.com/)
