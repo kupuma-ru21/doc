@@ -1,4 +1,4 @@
-# Difference between remote and local server
+# LocalとProdで挙動が一致しない
 
 - LocalとProdで挙動が一致しない事象が発生
   具体的にはgraphqlでresponse取得するためにqueryを実行
@@ -9,5 +9,3 @@
   期待値としてcreatedAtは実行時の日付
   結果、乖離が発生
   createdAtの値を実行時の日付として扱うために、`const getCreatedAt = () => dayjs().utc();`に変更
-
-
