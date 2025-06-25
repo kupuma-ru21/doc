@@ -3,7 +3,7 @@
 ```
 |           Before           |           After            |
 | :------------------------: | :------------------------: |
-|<video src="https://user-images.githubusercontent.com/アップロード先URLその1.mp4">|<video src="https://user-images.githubusercontent.com/アップロード先URLその2.mp4">|
+|<video src="https://user-images.githubusercontent.com/TODO-BEFORE.mp4">|<video src="https://user-images.githubusercontent.com/TODO-AFTER.mp4">|
 ```
 
 ---
@@ -11,7 +11,9 @@
 ### A Movie
 
 ```
-<video src="https://user-images.githubusercontent.com/アップロード先URLその1.mp4">
+|           After            |
+| :------------------------: |
+|<video src="https://user-images.githubusercontent.com/TODO-AFTER.mp4">|
 ```
 
 ---
@@ -21,15 +23,7 @@
 ```
 |           Before           |           After            |
 | :------------------------: | :------------------------: |
-|TODO|TODO|
-```
-
----
-
-### A Image
-
-```
-<img width="640" alt="ファイル名" src="https://user-images.githubusercontent.com/アップロード先URL.png">
+|BEFORE|AFTER|
 ```
 
 ---
