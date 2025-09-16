@@ -46,8 +46,12 @@
     "editor.formatOnSave": false
   },
   "// HTML": "",
-  "// REF: html.autoClosingTags": "https://stackoverflow.com/questions/49391798/vs-code-turn-off-auto-close-tags-but-leave-on-autocomplete#:~:text=Go%20to%20File%20%3E%20Preferences%20%3E%20Settings,make%20it%20autocomplete%20for%20you",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
   "html.autoClosingTags": true,
+  "// REF: html.autoClosingTags": "https://stackoverflow.com/questions/49391798/vs-code-turn-off-auto-close-tags-but-leave-on-autocomplete#:~:text=Go%20to%20File%20%3E%20Preferences%20%3E%20Settings,make%20it%20autocomplete%20for%20you",
   "// Terminal": "",
   "terminal.integrated.tabs.enabled": false,
   "terminal.integrated.letterSpacing": -0.5,
