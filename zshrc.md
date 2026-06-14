@@ -249,6 +249,15 @@ pull-request-force() {
 
 git() {
   case "$1" in
+    wt)
+      # `g wt fix/hoge` で worktree を作成し、そのディレクトリへ cd する
+      # git alias はサブシェルで動くため cd できない。ここで処理して親シェルを移動させる
+      shift
+      local branch="$1"
+      # ブランチ名の `/` を `-` に変換して worktree のディレクトリ名にする（fix/hoge -> ../fix-hoge）
+      local dir="../$(echo "$branch" | tr / -)"
+      command git worktree add -b "$branch" "$dir" && cd "$dir"
+      ;;
     ch|revert)
       output="$(handle_git_command "true" "$@" 2>&1)"
       ret=$?
