@@ -319,4 +319,14 @@ cleanup_tmux() {
   fi
 }
 trap cleanup_tmux EXIT HUP
+
+# --- テスト並列数の上限 ---
+# AIエージェント(Claude Code / Codex)が go test ./... や vitest を全コア並列で回すと
+# ロードアベレージが20超えになりMacが発熱するため、ローカルでは並列数を4に抑える。
+# -p: 同時に実行するパッケージ数 / -parallel: パッケージ内の t.Parallel() の同時実行数
+# (go build 等は -parallel を無視するので GOFLAGS に入れても他コマンドに影響しない)
+export GOFLAGS="-p=4 -parallel=4"
+# vitest は pool に応じてどちらかを参照する (v3 のデフォルトは forks)
+export VITEST_MAX_THREADS=4
+export VITEST_MAX_FORKS=4
 ```
