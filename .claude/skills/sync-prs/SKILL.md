@@ -132,7 +132,7 @@ git rev-parse "$BACKUP"   # バックアップの SHA（= OLD_SHA）を記録し
 - rebase した PR ごとに、リポジトリの設定ファイル（`Makefile`, `package.json`, `go.mod`, `pubspec.yaml` 等）を確認し、該当する lint / typecheck / build / test を実行する。
   - 変更があったディレクトリに絞って実行してよい（例: `web/` のみなら `cd web && yarn check-all`）。
   - 複数 PR のチェックを並列で走らせない（Mac の発熱対策。1 PR ずつ順番に実行する）。
-  - 並列数は `~/.zshrc` の `GOFLAGS=-p=4 -parallel=4` / `VITEST_MAX_THREADS=4` / `VITEST_MAX_FORKS=4`（最大 4）に従う。これを上書きする `-p` や `--maxWorkers` は指定しない（発熱対策で意図的に制限しているため）。
+  - 並列数は `~/.zshrc` の `GOFLAGS=-p=1 -parallel=1` / `VITEST_MAX_THREADS=1` / `VITEST_MAX_FORKS=1`（1 つずつ直列実行）に従う。これを上書きする `-p` や `--maxWorkers` は指定しない（発熱対策で意図的に制限しているため）。
 - **エラーが 0 になるまで修正を繰り返す**。修正時も「既存の挙動」「新規の挙動」のどちらかを削って通すことはしない。
 - base 側・PR 側それぞれのテストが両方通ることをもって「両立できた」と判断する。
 - 静的チェックを通すための修正は、原因になったコミットに `git commit --fixup <sha>` してから `GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash <NEW_BASE>` で取り込む。末尾に修正コミットを足してもよいが、merge commit は作らない。
